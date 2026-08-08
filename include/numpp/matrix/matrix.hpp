@@ -1,0 +1,65 @@
+#ifndef NUMPP_MATRIX_MATRIXC_HPP
+#define NUMPP_MATRIX_MATRIXC_HPP
+
+#include <numpp/matrix/forward.hpp>
+#include <numpp/matrix/core.hpp>
+
+namespace numpp {
+    template<typename T>
+    class matrix : public matrix_base<matrix<T>, T> {
+        private:
+            void alloc(bool zero_fill=false) {
+                if (zero_fill) {
+                    this->data_ = new T[this->size_]{};
+                } else {
+                    this->data_ = new T[this->size_];
+                }
+            }
+
+            void del() {
+                if (this->data_) {
+                    delete[] this->data_;
+                    this->data_ = nullptr;
+                }
+            }
+        public:
+            matrix() = default;
+
+            matrix(std::initializer_list<std::initializer_list<T>> list, layout order=layout::rowmajor);
+
+            template<strided_matrix EXPR>
+            matrix(const EXPR& other);
+
+            matrix(const matrix& other);
+            matrix(matrix&& other) noexcept;
+
+            template<strided_matrix EXPR>
+            matrix<T>& operator=(const EXPR& other);
+
+            matrix<T>& operator=(const matrix& other);
+            matrix<T>& operator=(matrix&&) noexcept;
+
+            static matrix empty(size_t row, size_t col, layout order=layout::rowmajor);
+            static matrix zeros(size_t row, size_t col, layout order=layout::rowmajor);
+            static matrix ones(size_t row, size_t col, layout order=layout::rowmajor);
+            static matrix full(size_t row, size_t col, const T& value, layout order=layout::rowmajor);
+
+            template<strided_matrix EXPR>
+            static matrix<T> empty_like(const EXPR& other);
+            template<strided_matrix EXPR>
+            static matrix<T> zeros_like(const EXPR& other);
+            template<strided_matrix EXPR>
+            static matrix<T> ones_like(const EXPR& other);
+            template<strided_matrix EXPR>
+            static matrix<T> full_like(const EXPR& other, const T& value);
+
+            static matrix eye(size_t row, size_t col, int k=0, layout order=layout::rowmajor);
+            static matrix diag(std::initializer_list<T> list, int k=0, layout order=layout::rowmajor);
+
+            ~matrix() {
+                del();
+            }
+    };
+}
+
+#endif //NUMPP_MATRIX_MATRIXC_HPP

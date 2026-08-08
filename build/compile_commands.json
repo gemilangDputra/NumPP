@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/Developers/coding-lab/numpp/build",
+  "command": "D:\\Developers\\apps\\msys2\\ucrt64\\bin\\g++.exe  @CMakeFiles/TEST.dir/includes_CXX.rsp -g -o CMakeFiles\\TEST.dir\\test\\test.cpp.obj -c D:\\Developers\\coding-lab\\numpp\\test\\test.cpp",
+  "file": "D:/Developers/coding-lab/numpp/test/test.cpp",
+  "output": "CMakeFiles/TEST.dir/test/test.cpp.obj"
+}
+]
