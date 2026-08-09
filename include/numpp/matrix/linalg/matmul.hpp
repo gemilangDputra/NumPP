@@ -15,7 +15,6 @@ namespace numpp {
             template<strided_matrix A, strided_matrix B>
             auto matmul_blas_same_layout(const A& a, const B& b) {
                 using T = typename A::value_type;
-                std::cout << "the sample using same layout blas kernel\n";
                 matrix<T> out = matrix<T>::empty(a.row(), b.col());
 
                 const bool trans_a = is_transpose(a);
@@ -77,8 +76,6 @@ namespace numpp {
             template<strided_matrix A, strided_matrix B>
             auto matmul_blas_different_layout(const A& a, const B& b) {
                 using T = typename A::value_type;
-
-                std::cout << "the sample using diffrent layout blas kernel\n";
                 matrix<T> out = matrix<T>::empty(a.row(), b.col());
 
                 const bool trans_a = is_transpose(a);
@@ -373,8 +370,6 @@ namespace numpp {
             template<strided_matrix A, strided_matrix B>
             auto matmul_native_contiguous_notrans_samelayout(const A& a, const B& b) {
                 using T = typename A::value_type;
-                std::cout << "the sample using native contiguous kernel\n";
-
                 matrix<T> out = matrix<T>::zeros(a.row(), b.col());
 
                 const T* adata = a.data();
@@ -414,7 +409,6 @@ namespace numpp {
             template<strided_matrix A, strided_matrix B>
             auto matmul_native_general(const A& a, const B& b) {
                 using T = typename A::value_type;
-                std::cout << "the sample using general kernel\n";
                 matrix<T> out = matrix<T>::empty(a.row(), b.col());
                 for (size_t i = 0; i < a.row(); ++i) {
                     for (size_t j = 0; j < b.col(); ++j) {
