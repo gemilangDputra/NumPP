@@ -12,6 +12,8 @@ namespace numpp {
     class matrix_view;
     template<typename T>
     class matrix_view;
+    template<class Derived, typename T>
+    class matrix_base;
 
     struct slice_range;
 

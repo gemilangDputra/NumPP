@@ -3,352 +3,104 @@
 #include <iostream>
 
 int main() {
-    using numpp::layout;
+    numpp::matrix<double> a({
+        {11.1, 12.2, 13.3, 14.4, 15.5},
+        {21.6, 22.7, 23.8, 24.9, 25.0},
+        {31.1, 32.2, 33.3, 34.4, 35.5},
+        {41.6, 42.7, 43.8, 44.9, 45.0},
+        {51.1, 52.2, 53.3, 54.4, 55.5}
+    }, numpp::layout::rowmajor);
 
-    // ============================================================
-    // BASE MATRICES
-    // ============================================================
-
-    numpp::matrix<double> ar =
-        numpp::matrix<double>::full(
-            256, 128, 15,
-            layout::rowmajor
-        );
-
-    numpp::matrix<double> ac =
-        numpp::matrix<double>::full(
-            256, 128, 15,
-            layout::colmajor
-        );
-
-    numpp::matrix<double> br =
-        numpp::matrix<double>::full(
-            128, 192, 25,
-            layout::rowmajor
-        );
-
-    numpp::matrix<double> bc =
-        numpp::matrix<double>::full(
-            128, 192, 25,
-            layout::colmajor
-        );
+    numpp::matrix<double> b({
+        {11.1, 21.2, 31.3, 41.4, 51.5},
+        {21.6, 22.7, 23.8, 24.9, 25.0},
+        {31.1, 32.2, 33.3, 34.4, 35.5},
+        {41.6, 42.7, 43.8, 44.9, 45.0},
+        {51.1, 52.2, 53.3, 54.4, 55.5}
+    }, numpp::layout::colmajor);
 
 
-    // ============================================================
-    // 1. NORMAL CONTIGUOUS
+    // Matrix khusus untuk testing slice: 5 × 6
+    numpp::matrix<double> c({
+        {11, 12, 13, 14, 15, 16},
+        {21, 22, 23, 24, 25, 26},
+        {31, 32, 33, 34, 35, 36},
+        {41, 42, 43, 44, 45, 46},
+        {51, 52, 53, 54, 55, 56}
+    }, numpp::layout::rowmajor);
+
+
+    // Matrix khusus untuk testing reshape: 3 × 5
+    // 15 elements → reshape menjadi 3 × 5
+    numpp::matrix<double> d({
+        {11, 12, 13, 14, 15},
+        {21, 22, 23, 24, 25},
+        {31, 32, 33, 34, 35}
+    }, numpp::layout::rowmajor);
+
+
+    // Basic matrix multiplication
+    auto test_1 = numpp::linalg::matmul(a, a);
+
+    // Same operation with column-major matrices
+    auto test_2 = numpp::linalg::matmul(b, b);
+
+    // Different layouts
+    auto test_3 = numpp::linalg::matmul(a, b);
+
+    // Transpose view
+    auto test_4 = numpp::linalg::matmul(
+        a,
+        numpp::transpose(b)
+    );
+
+    // Transpose view
+    auto test_5 = numpp::linalg::matmul(
+        a,
+        numpp::transpose(a)
+    );
+
+    // Actual slice:
     //
-    // A = 256 x 128
-    // B = 128 x 192
-    // C = 256 x 192
-    // ============================================================
-
-    auto sample_1 =
-        numpp::linalg::matmul(ar, br);
-
-    auto sample_2 =
-        numpp::linalg::matmul(ac, bc);
-
-
-    // ============================================================
-    // 2. DIFFERENT LAYOUT
+    // c = 5 × 6
+    // columns [1, 4) → 5 × 3
     //
-    // RowMajor A * ColMajor B
-    // ColMajor A * RowMajor B
-    // ============================================================
-
-    auto sample_3 =
-        numpp::linalg::matmul(ar, bc);
-
-    auto sample_4 =
-        numpp::linalg::matmul(ac, br);
-
-
-    // ============================================================
-    // 3. TRANSPOSE
+    // a = 5 × 5
+    // slice(c) = 5 × 3
     //
-    // ar^T = 128 x 256
-    // Untuk valid multiplication, pasangan harus 256 x N.
-    // ============================================================
-
-    auto sample_5 =
-        numpp::linalg::matmul(
-            numpp::transpose(ar),
-            ar
-        );
-
-    auto sample_6 =
-        numpp::linalg::matmul(
-            numpp::transpose(ac),
-            ac
-        );
-
-
-    // ============================================================
-    // 4. SLICE BIASA, STEP = 1
-    //
-    // A:
-    //   rows 16..143  -> 128 rows
-    //   cols 0..127   -> 128 cols
-    //
-    // B:
-    //   rows 0..127   -> 128 rows
-    //   cols 16..143  -> 128 cols
-    //
-    // Jadi:
-    // A = 128 x 128
-    // B = 128 x 128
-    // C = 128 x 128
-    // ============================================================
-
-    auto ar_slice =
+    // 5 × 5 × 5 × 3 → 5 × 3
+    auto test_6 = numpp::linalg::matmul(
+        a,
         numpp::slice(
-            ar,
-            numpp::slice_range(16, 144, 1),
-            numpp::slice_range(0, 128, 1)
-        );
+            c,
+            numpp::all,
+            numpp::slice_range(1, 4, 1)
+        )
+    );
 
-    auto br_slice =
-        numpp::slice(
-            br,
-            numpp::slice_range(0, 128, 1),
-            numpp::slice_range(16, 144, 1)
-        );
-
-    auto sample_7 =
-        numpp::linalg::matmul(
-            ar_slice,
-            br_slice
-        );
-
-
-    // ============================================================
-    // 5. SLICE COLMAJOR
-    // ============================================================
-
-    auto ac_slice =
-        numpp::slice(
-            ac,
-            numpp::slice_range(16, 144, 1),
-            numpp::slice_range(0, 128, 1)
-        );
-
-    auto bc_slice =
-        numpp::slice(
-            bc,
-            numpp::slice_range(0, 128, 1),
-            numpp::slice_range(16, 144, 1)
-        );
-
-    auto sample_8 =
-        numpp::linalg::matmul(
-            ac_slice,
-            bc_slice
-        );
-
-
-    // ============================================================
-    // 6. SLICE STEP = 2
+    // Actual reshape + transpose:
     //
-    // ar_strided:
-    //   256 / 2 = 128 rows
-    //   128 / 2 = 64 cols
+    // d = 3 × 5 = 15 elements
     //
-    // br_strided:
-    //   128 / 2 = 64 rows
-    //   192       = 192 cols
+    // reshape(d, 3, 5) → 3 × 5
+    // transpose        → 5 × 3
     //
-    // A = 128 x 64
-    // B = 64 x 192
-    // C = 128 x 192
-    // ============================================================
-
-    auto ar_strided =
-        numpp::slice(
-            ar,
-            numpp::slice_range(0, 256, 2),
-            numpp::slice_range(0, 128, 2)
-        );
-
-    auto br_strided =
-        numpp::slice(
-            br,
-            numpp::slice_range(0, 128, 2),
-            numpp::slice_range(0, 192, 1)
-        );
-
-    auto sample_9 =
-        numpp::linalg::matmul(
-            ar_strided,
-            br_strided
-        );
-
-
-    // ============================================================
-    // 7. COLMAJOR STRIDED
-    // ============================================================
-
-    auto ac_strided =
-        numpp::slice(
-            ac,
-            numpp::slice_range(0, 256, 2),
-            numpp::slice_range(0, 128, 2)
-        );
-
-    auto bc_strided =
-        numpp::slice(
-            bc,
-            numpp::slice_range(0, 128, 2),
-            numpp::slice_range(0, 192, 1)
-        );
-
-    auto sample_10 =
-        numpp::linalg::matmul(
-            ac_strided,
-            bc_strided
-        );
-
-
-    // ============================================================
-    // 8. SLICE DENGAN OFFSET + STEP
+    // a = 5 × 5
     //
-    // A:
-    //   rows: 3..251 step 3
-    //   cols: 5..124 step 3
-    //
-    // 83 x 40
-    //
-    // B:
-    //   rows: 7..126 step 3
-    //   cols: 4..190 step 1
-    //
-    // 40 x 186
-    //
-    // C = 83 x 186
-    // ============================================================
-
-    auto ar_hard =
-        numpp::slice(
-            ar,
-            numpp::slice_range(3, 252, 3),
-            numpp::slice_range(5, 125, 3)
-        );
-
-    auto br_hard =
-        numpp::slice(
-            br,
-            numpp::slice_range(7, 127, 3),
-            numpp::slice_range(4, 190, 1)
-        );
-
-    auto sample_11 =
-        numpp::linalg::matmul(
-            ar_hard,
-            br_hard
-        );
+    // 5 × 5 × 5 × 3 → 5 × 3
+    auto test_7 = numpp::linalg::matmul(
+        a,
+        numpp::transpose(
+            numpp::reshape(d, 3, 5)
+        )
+    );
 
 
-    // ============================================================
-    // 9. STRIDED + TRANSPOSE
-    //
-    // ar_strided:
-    //   128 x 64
-    //
-    // transpose:
-    //   64 x 128
-    //
-    // dikali dengan:
-    //   ar_strided = 128 x 64
-    //
-    // hasil:
-    //   64 x 64
-    // ============================================================
-
-    auto sample_12 =
-        numpp::linalg::matmul(
-            numpp::transpose(ar_strided),
-            ar_strided
-        );
-
-
-    // ============================================================
-    // 10. COLMAJOR STRIDED + TRANSPOSE
-    // ============================================================
-
-    auto sample_13 =
-        numpp::linalg::matmul(
-            numpp::transpose(ac_strided),
-            ac_strided
-        );
-
-
-    // ============================================================
-    // 11. SLICE + TRANSPOSE + DIFFERENT LAYOUT
-    //
-    // A = transpose(ar_slice)
-    //     128 x 128
-    //
-    // B = bc_slice
-    //     128 x 128
-    //
-    // C = 128 x 128
-    // ============================================================
-
-    auto sample_14 =
-        numpp::linalg::matmul(
-            numpp::transpose(ar_slice),
-            bc_slice
-        );
-
-
-    // ============================================================
-    // 12. SLICE + TRANSPOSE PADA KEDUA OPERAND
-    // ============================================================
-
-    auto sample_15 =
-        numpp::linalg::matmul(
-            numpp::transpose(ar_slice),
-            numpp::transpose(br_slice)
-        );
-
-
-    // ============================================================
-    // PRINT
-    // ============================================================
-
-    auto print_shape = [](
-        const auto& m,
-        const char* name
-    ) {
-        std::cout
-            << name
-            << ": "
-            << m.row()
-            << "x"
-            << m.col()
-            << '\n';
-    };
-
-    print_shape(sample_1,  "sample_1  normal row/row");
-    print_shape(sample_2,  "sample_2  normal col/col");
-    print_shape(sample_3,  "sample_3  row/col");
-    print_shape(sample_4,  "sample_4  col/row");
-
-    print_shape(sample_5,  "sample_5  transpose row");
-    print_shape(sample_6,  "sample_6  transpose col");
-
-    print_shape(sample_7,  "sample_7  row slice");
-    print_shape(sample_8,  "sample_8  col slice");
-
-    print_shape(sample_9,  "sample_9  row step2");
-    print_shape(sample_10, "sample_10 col step2");
-
-    print_shape(sample_11, "sample_11 offset + step3");
-
-    print_shape(sample_12, "sample_12 strided transpose row");
-    print_shape(sample_13, "sample_13 strided transpose col");
-
-    print_shape(sample_14, "sample_14 slice transpose mixed");
-    print_shape(sample_15, "sample_15 both transpose");
-
-    std::cout << "All sample matmul calls completed.\n";
+    std::cout << test_1 << '\n';
+    std::cout << test_2 << '\n';
+    std::cout << test_3 << '\n';
+    std::cout << test_4 << '\n';
+    std::cout << test_5 << '\n';
+    std::cout << test_6 << '\n';
+    std::cout << test_7 << '\n';
 }

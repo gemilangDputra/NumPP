@@ -427,14 +427,14 @@ namespace numpp {
                 return out;
             }
         }
-
+        
         template<strided_matrix A, strided_matrix B>
-        auto matmul(const A& a, const B& b)
-            requires (std::same_as<
+        requires (std::same_as<
             typename A::value_type,
             typename B::value_type> &&
-            is_arithmetic<typename A::value_type>
-            ) {
+            is_numeric<typename A::value_type>
+        )
+        auto matmul(const A& a, const B& b) {
             using T = typename A::value_type;
             if (a.col() != b.row())
                 throw std::invalid_argument("matrix dimensions are incompatible for matrix multiplication");
@@ -467,12 +467,12 @@ namespace numpp {
     }
 
     template<strided_matrix A, strided_matrix B>
-    auto matmul(const A& a, const B& b)
-        requires (std::same_as<
+    requires (std::same_as<
         typename A::value_type,
         typename B::value_type> &&
-        is_arithmetic<typename A::value_type>
-        ) {
+        is_numeric<typename A::value_type>
+    )
+    auto matmul(const A& a, const B& b) {
         return linalg::matmul(a,b);
     }
 }

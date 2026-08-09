@@ -16,7 +16,7 @@
 
 namespace numpp {
     template<class Derived, typename T>
-    std::ostream& operator<<(std::ostream& os, matrix_base<Derived, T>& mat) {
+    std::ostream& operator<<(std::ostream& os, const matrix_base<Derived, T>& mat) {
         const auto& opt = detail::option(os);
         const bool truncate = mat.size() > static_cast<size_t>(opt.threshold);
         const bool truncate_row = truncate && mat.row() > 2 * opt.edgeitems;

@@ -65,7 +65,7 @@ namespace numpp {
 
         size_t cols = ((col.stop - col.start) + col.step - 1) / col.step;
 
-        this->copy_metadata(
+        this->init_metadata(
             other.data(),
             other.row() * cols,
             other.row(),
@@ -80,43 +80,58 @@ namespace numpp {
 
     template<typename T>
     template<strided_matrix EXPR>
-    matrix_view<T>::matrix_view(EXPR& mat, slice_range row, detail::all_t) {
+    matrix_view<T>::matrix_view(EXPR& other, slice_range row, detail::all_t) {
         if (row.step == 0)
             throw std::invalid_argument("row slice step must be greater than zero");
 
         if (row.start > row.stop)
             throw std::out_of_range("row slice start cannot be greater than stop");
 
-        if (row.stop > mat.row())
+        if (row.stop > other.row())
             throw std::out_of_range("row slice stop exceeds matrix row count");
 
         size_t rows = ((row.stop - row.start) + row.step - 1) / row.step;
 
         this->init_metadata(
-            mat.data(),
-            rows * mat.col(),
+            other.data(),
+            rows * other.col(),
             rows,
-            mat.col(),
-            mat.rowstride() * row.step,
-            mat.colstride(),
-            mat.order(),
-            mat.offset()
-            + row.start * mat.rowstride()
+            other.col(),
+            other.rowstride() * row.step,
+            other.colstride(),
+            other.order(),
+            other.offset()
+            + row.start * other.rowstride()
         );
     }
 
     template<typename T>
     template<strided_matrix EXPR>
-    matrix_view<T>::matrix_view(EXPR& mat, detail::all_t) {
+    matrix_view<T>::matrix_view(EXPR& other, detail::all_t) {
         this->copy_metadata(
-            mat.data(),
-            mat.size(),
-            mat.row(),
-            mat.col(),
-            mat.rowstride(),
-            mat.colstride(),
-            mat.order(),
-            mat.offset()
+            other.data(),
+            other.size(),
+            other.row(),
+            other.col(),
+            other.rowstride(),
+            other.colstride(),
+            other.order(),
+            other.offset()
+        );
+    }
+
+    template<typename T>
+    template<strided_matrix EXPR>
+    matrix_view<T>::matrix_view(EXPR& other, detail::all_t, detail::all_t) {
+        this->init_metadata(
+            other.data(),
+            other.size(),
+            other.row(),
+            other.col(),
+            other.rowstride(),
+            other.colstride(),
+            other.order(),
+            other.offset()
         );
     }
     
@@ -161,43 +176,43 @@ namespace numpp {
     }
     
     template<strided_matrix EXPR>
-    auto slice(EXPR& mat, slice_range row, slice_range col) {
-        return matrix_view<typename EXPR::value_type>(mat, row, col);
+    auto slice(EXPR& other, slice_range row, slice_range col) {
+        return matrix_view<typename EXPR::value_type>(other, row, col);
     }
 
     template<strided_matrix EXPR>
-    auto slice(EXPR& mat, detail::all_t, slice_range col) {
-        return matrix_view<typename EXPR::value_type>(mat, all, col);
+    auto slice(EXPR& other, detail::all_t, slice_range col) {
+        return matrix_view<typename EXPR::value_type>(other, all, col);
     }
 
     template<strided_matrix EXPR>
-    auto slice(EXPR& mat, slice_range row, detail::all_t) {
-        return matrix_view<typename EXPR::value_type>(mat, row, all);
+    auto slice(EXPR& other, slice_range row, detail::all_t) {
+        return matrix_view<typename EXPR::value_type>(other, row, all);
     }
 
     template<strided_matrix EXPR>
-    auto slice(EXPR& mat, detail::all_t, detail::all_t) {
-        return matrix_view<typename EXPR::value_type>(mat, all, all);
+    auto slice(EXPR& other, detail::all_t, detail::all_t) {
+        return matrix_view<typename EXPR::value_type>(other, all, all);
     }
     
     template<strided_matrix EXPR>
-    auto slice(const EXPR& mat, slice_range row, slice_range col) {
-        return matrix_view<const typename EXPR::value_type>(mat, row, col);
+    auto slice(const EXPR& other, slice_range row, slice_range col) {
+        return matrix_view<const typename EXPR::value_type>(other, row, col);
     }
 
     template<strided_matrix EXPR>
-    auto slice(const EXPR& mat, detail::all_t, slice_range col) {
-        return matrix_view<const typename EXPR::value_type>(mat, all, col);
+    auto slice(const EXPR& other, detail::all_t, slice_range col) {
+        return matrix_view<const typename EXPR::value_type>(other, all, col);
     }
     
     template<strided_matrix EXPR>
-    auto slice(const EXPR& mat, slice_range row, detail::all_t) {
-        return matrix_view<const typename EXPR::value_type>(mat, row, all);
+    auto slice(const EXPR& other, slice_range row, detail::all_t) {
+        return matrix_view<const typename EXPR::value_type>(other, row, all);
     }
     
     template<strided_matrix EXPR>
-    auto slice(const EXPR& mat, detail::all_t, detail::all_t) {
-        return matrix_view<const typename EXPR::value_type>(mat, all, all);
+    auto slice(const EXPR& other, detail::all_t, detail::all_t) {
+        return matrix_view<const typename EXPR::value_type>(other, all, all);
     }
 }
 

@@ -62,7 +62,8 @@ namespace numpp {
                 return  offset_ + row * rowstride_ + col * colstride_;
             }
         public:
-            using value_type = T;
+            using value_type = std::remove_const_t<T>;
+            using pointer_type = T*;
             
             const T* data() const { return data_; }
             T* data() { return data_; }
@@ -97,6 +98,22 @@ namespace numpp {
 
             matrix_view<T> reshape(size_t newrow, size_t newcol);
             matrix_view<const T> reshape(size_t newrow, size_t newcol) const;
+
+            template<strided_matrix B>
+            requires (std::same_as<T, typename B::value_type> && can_add_assign<T>)
+            matrix_base<Derived, T>& operator+=(const B& b);
+            
+            template<strided_matrix B>
+            requires (std::same_as<T, typename B::value_type> && can_sub_assign<T>)
+            matrix_base<Derived, T>& operator-=(const B& b);
+            
+            template<strided_matrix B>
+            requires (std::same_as<T, typename B::value_type> && can_mul_assign<T>)
+            matrix_base<Derived, T>& operator*=(const B& b);
+            
+            template<strided_matrix B>
+            requires (std::same_as<T, typename B::value_type> && can_div_assign<T>)
+            matrix_base<Derived, T>& operator/=(const B& b);
         private: 
             Derived& derived() {
                 return static_cast<Derived&>(*this);

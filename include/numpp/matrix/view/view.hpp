@@ -22,20 +22,84 @@ namespace numpp {
                 );
             }
 
+            matrix_view(const matrix_view& other) {
+                this->init_metadata(
+                    other.data(),
+                    other.size(),
+                    other.row(),
+                    other.col(),
+                    other.rowstride(),
+                    other.colstride(),
+                    other.order(),
+                    other.offset()
+                );
+            }
+
+            template<strided_matrix EXPR>
+            matrix_view& operator=(EXPR& other) {
+                this->init_metadata(
+                    other.data(),
+                    other.size(),
+                    other.row(),
+                    other.col(),
+                    other.rowstride(),
+                    other.colstride(),
+                    other.order(),
+                    other.offset()
+                );
+
+                return *this;
+            }
+
+            matrix_view& operator=(const matrix_view& other) {
+                this->init_metadata(
+                    other.data(),
+                    other.size(),
+                    other.row(),
+                    other.col(),
+                    other.rowstride(),
+                    other.colstride(),
+                    other.order(),
+                    other.offset()
+                );
+
+                return *this;
+            }
+
+            matrix_view(T* data,
+                size_t size,
+                size_t row,
+                size_t col,
+                size_t rowstride,
+                size_t colstride,
+                layout order,
+                size_t offset) {
+                this->init_metadata(
+                    data,
+                    size,
+                    row,
+                    col,
+                    rowstride,
+                    colstride,
+                    order,
+                    offset
+                );
+            }
+
             template<strided_matrix EXPR>
             matrix_view(EXPR& other, detail::transflag_t) ;
-
             template<strided_matrix EXPR>
             matrix_view(EXPR& other, size_t newrow, size_t newcol);
-
             template<strided_matrix EXPR>
             matrix_view(EXPR& other, slice_range row, slice_range col);
             template<strided_matrix EXPR>
             matrix_view(EXPR& other, detail::all_t, slice_range col);
             template<strided_matrix EXPR>
-            matrix_view(EXPR& mat, slice_range row, detail::all_t);
+            matrix_view(EXPR& other, slice_range row, detail::all_t);
             template<strided_matrix EXPR>
-            matrix_view(EXPR& mat, detail::all_t);
+            matrix_view(EXPR& other, detail::all_t);
+            template<strided_matrix EXPR>
+            matrix_view(EXPR& other, detail::all_t, detail::all_t);
 
             matrix<T> to_matrix() const {
                 matrix<T> out = matrix<T>::empty(this->row_, this->col_, this->order_);
@@ -59,13 +123,13 @@ namespace numpp {
     }
 
     template<strided_matrix EXPR>
-    auto view(EXPR& mat) {
-        return matrix_view<typename EXPR::value_type>(mat);
+    auto view(EXPR& other) {
+        return matrix_view<typename EXPR::value_type>(other);
     }
 
     template<strided_matrix EXPR>
-    auto view(const EXPR& mat) {
-        return matrix_view<const typename EXPR::value_type>(mat);
+    auto view(const EXPR& other) {
+        return matrix_view<const typename EXPR::value_type>(other);
     }
 }
 
