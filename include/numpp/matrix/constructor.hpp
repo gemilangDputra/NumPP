@@ -95,6 +95,7 @@ namespace numpp {
         out.offset_ = other.offset();
 
         out.alloc(true);
+        return out;
     }
 
     template<typename T>
@@ -149,8 +150,11 @@ namespace numpp {
         out.size_ = row*col;
         out.alloc(true);
 
+        const int rows = static_cast<int>(row);
+        const int cols = static_cast<int>(col);
+
         const int begin = std::max(0, -k);
-        const int end  = std::min<int>(row, col - k);
+        const int end   = std::min(rows, cols - k);
 
         for (int i = begin; i < end; ++i) out(i, i + k) = T{1};
         return out;
@@ -158,22 +162,20 @@ namespace numpp {
 
     template<typename T>
     matrix<T> matrix<T>::diag(std::initializer_list<T> list, int k, layout order) {
-        size_t n = list.size();
-        size_t row = n + std::max(0, -k);
-        size_t col = n + std::max(0,  k);
+        const size_t n = list.size();
+        const size_t row_offset = k < 0 ? static_cast<size_t>(-(static_cast<long long>(k))) : 0;
+        const size_t col_offset = k > 0 ? static_cast<size_t>(k) : 0;
+        const size_t row = n + row_offset;
+        const size_t col = n + col_offset;
 
         matrix<T> out;
         out.row_ = row;
         out.col_ = col;
-
         out.compute_stride(order);
         out.size_ = row * col;
         out.alloc(true);
 
         size_t i = 0;
-        const int row_offset = (k < 0) ? -k : 0;
-        const int col_offset = (k > 0) ?  k : 0;
-
         for (const auto& value : list) {
             out(i + row_offset, i + col_offset) = value;
             ++i;
@@ -189,18 +191,27 @@ namespace numpp {
 
         for (const auto& row : list) {
             if (row.size() != this->col_)
-                throw std::invalid_argument("inconsistent row sizes");
+                throw std::invalid_argument(
+                    "numpp::operation<matrix ({ {...},... })> error: "
+                    "inconsistent row size: expected " +
+                    std::to_string(this->col_) +
+                    " columns, got " +
+                    std::to_string(row.size())
+                );
         }
 
         this->compute_stride(order);
         this->size_ = this->row_ * this->col_;
         alloc();
 
-        size_t idx = 0;
+        size_t i = 0;
         for (const auto& row : list) {
+            size_t j = 0;
             for (const auto& value : row) {
-                this->data_[idx++] = value;
+                (*this)(i, j) = value;
+                ++j;
             }
+            ++i;
         }
     }
 

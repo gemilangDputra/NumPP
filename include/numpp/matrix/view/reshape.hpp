@@ -4,14 +4,27 @@
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
 
+#include <string>
+
 namespace numpp {
     template<typename T>
     template<strided_matrix EXPR>
     matrix_view<T>::matrix_view(EXPR& other, size_t newrow, size_t newcol) {
         if (newrow * newcol != other.size())
-            throw std::invalid_argument("cannot reshape matrix: newrow * newcol must equal matrix.size()");
+            throw std::invalid_argument(
+                "numpp::operation<reshape> error: "
+                "cannot reshape matrix with " +
+                std::to_string(other.size()) +
+                " elements into " +
+                std::to_string(newrow) + "x" +
+                std::to_string(newcol)
+            );
+
         if (!is_contiguous(other))
-            throw std::invalid_argument("cannot reshape non-contiguous matrix");
+            throw std::invalid_argument(
+                "numpp::operation<reshape> error: "
+                "cannot reshape non-contiguous matrix"
+            );
         
         this->init_metadata(
             other.data(),

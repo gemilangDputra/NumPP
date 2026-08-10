@@ -3,6 +3,7 @@
 
 #include <concepts>
 #include <type_traits>
+#include <stdexcept>
 
 #include <numpp/matrix/forward.hpp>
 
@@ -25,6 +26,18 @@ namespace numpp {
         { mat.order() } -> std::same_as<numpp::layout>;
         { mat(0, 0) } -> std::convertible_to<typename EXPR::value_type>;
     };
+
+    template<typename EXPR>
+    concept vector_1d =
+    requires(const EXPR& v, std::size_t i) {
+        typename EXPR::value_type;
+
+        { v.size() } -> std::convertible_to<std::size_t>;
+        { v.data() } -> std::convertible_to<const typename EXPR::value_type*>;
+        { v[i] } -> std::convertible_to<typename EXPR::value_type>;
+        }
+        && (!requires(const EXPR& v) { v.row(); })
+        && (!requires(const EXPR& v) { v.col(); });
     
     template<strided_matrix EXPR>
     bool is_contiguous(const EXPR& mat) {

@@ -6,6 +6,7 @@
 #include <numpp/matrix/matrix.hpp>
 #include <numpp/matrix/view/broadcast.hpp>
 #include <utility>
+#include <string>
 
 namespace numpp {
     template<matrix_derived A, strided_matrix B>
@@ -49,7 +50,14 @@ namespace numpp {
 
             return out;
         }
-        throw std::invalid_argument("matrix dimensions are incompatible for addition");
+        throw std::invalid_argument(
+            "numpp::operation<add> error: "
+            "cannot add matrices with incompatible shapes: " +
+            std::to_string(a.row()) + "x" +
+            std::to_string(a.col()) + " and " +
+            std::to_string(b.row()) + "x" +
+            std::to_string(b.col())
+        );
     }
 
     template<matrix_derived A, strided_matrix B>
@@ -93,7 +101,14 @@ namespace numpp {
 
             return out;
         }
-        throw std::invalid_argument("matrix dimensions are incompatible for subtraction");
+        throw std::invalid_argument(
+            "numpp::operation<sub> error: "
+            "cannot add matrices with incompatible shapes: " +
+            std::to_string(a.row()) + "x" +
+            std::to_string(a.col()) + " and " +
+            std::to_string(b.row()) + "x" +
+            std::to_string(b.col())
+        );
     }
 
     template<matrix_derived A, strided_matrix B>
@@ -137,7 +152,14 @@ namespace numpp {
 
             return out;
         }
-        throw std::invalid_argument("matrix dimensions are incompatible for element-wise multiplication");
+        throw std::invalid_argument(
+            "numpp::operation<mul> error: "
+            "cannot add matrices with incompatible shapes: " +
+            std::to_string(a.row()) + "x" +
+            std::to_string(a.col()) + " and " +
+            std::to_string(b.row()) + "x" +
+            std::to_string(b.col())
+        );
     }
     
     template<matrix_derived A, strided_matrix B>
@@ -181,7 +203,14 @@ namespace numpp {
 
             return out;
         }
-        throw std::invalid_argument("matrix dimensions are incompatible for division");
+        throw std::invalid_argument(
+            "numpp::operation<div> error: "
+            "cannot add matrices with incompatible shapes: " +
+            std::to_string(a.row()) + "x" +
+            std::to_string(a.col()) + " and " +
+            std::to_string(b.row()) + "x" +
+            std::to_string(b.col())
+        );
     }
 
     template<class Derived, typename T>
@@ -207,9 +236,36 @@ namespace numpp {
 
         if (detail::is_broadcastable(derived(), b)) {
             if (row_ != b.row() && b.row() != 1)
-                throw std::invalid_argument("right-hand side cannot be broadcast to destination shape");
+                throw std::invalid_argument(
+                    "numpp::operation<add_assign> error: "
+                    "cannot broadcast " +
+                    std::to_string(b.row()) + "x" +
+                    std::to_string(b.col()) +
+                    " to destination shape " +
+                    std::to_string(row_) + "x" +
+                    std::to_string(col_) +
+                    ": source rows (" +
+                    std::to_string(b.row()) +
+                    ") must match destination rows (" +
+                    std::to_string(row_) +
+                    ") or be 1"
+                );
+
             if (col_ != b.col() && b.col() != 1)
-                throw std::invalid_argument("right-hand side cannot be broadcast to destination shape");
+                throw std::invalid_argument(
+                    "numpp::operation<add_assign> error: "
+                    "cannot broadcast " +
+                    std::to_string(b.row()) + "x" +
+                    std::to_string(b.col()) +
+                    " to destination shape " +
+                    std::to_string(row_) + "x" +
+                    std::to_string(col_) +
+                    ": source columns (" +
+                    std::to_string(b.col()) +
+                    ") must match destination columns (" +
+                    std::to_string(col_) +
+                    ") or be 1"
+                );
             auto [_, b_view] = detail::broadcast(derived(), b);
             for (size_t i = 0; i < row_; ++i) {
                 for (size_t j = 0; j < col_; ++j) {
@@ -218,8 +274,14 @@ namespace numpp {
             }
             return *this;
         }
-
-        throw std::invalid_argument("matrix dimensions are incompatible for addition");
+        throw std::invalid_argument(
+            "numpp::operation<add_assign> error: "
+            "cannot add-assign matrices with incompatible shapes: " +
+            std::to_string(row_) + "x" +
+            std::to_string(col_) + " and " +
+            std::to_string(b.row()) + "x" +
+            std::to_string(b.col())
+        );
     }
 }
 

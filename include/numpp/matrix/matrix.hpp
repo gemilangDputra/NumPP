@@ -54,6 +54,7 @@ namespace numpp {
             static matrix<T> full_like(const EXPR& other, const T& value);
 
             static matrix eye(size_t row, size_t col, int k=0, layout order=layout::rowmajor);
+            static matrix identity(size_t row, size_t col, int k=0, layout order=layout::rowmajor);
             static matrix diag(std::initializer_list<T> list, int k=0, layout order=layout::rowmajor);
 
             ~matrix() {

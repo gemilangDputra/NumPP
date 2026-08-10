@@ -4,6 +4,8 @@
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
 
+#include <string>
+
 namespace numpp {
     struct slice_range {
         size_t start;
@@ -17,22 +19,52 @@ namespace numpp {
     template<strided_matrix EXPR>
     matrix_view<T>::matrix_view(EXPR& other, slice_range row, slice_range col) {
         if (row.step == 0)
-            throw std::invalid_argument("row slice step must be greater than zero");
+            throw std::invalid_argument(
+                "numpp::operation<slice> error: "
+                "row slice step must be greater than zero"
+            );
 
         if (col.step == 0)
-            throw std::invalid_argument("column slice step must be greater than zero");
+            throw std::invalid_argument(
+                "numpp::operation<slice> error: "
+                "column slice step must be greater than zero"
+            );
 
         if (row.start > row.stop)
-            throw std::out_of_range("row slice start cannot be greater than stop");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "row slice start (" +
+                std::to_string(row.start) +
+                ") cannot be greater than stop (" +
+                std::to_string(row.stop) + ")"
+            );
 
         if (col.start > col.stop)
-            throw std::out_of_range("column slice start cannot be greater than stop");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "column slice start (" +
+                std::to_string(col.start) +
+                ") cannot be greater than stop (" +
+                std::to_string(col.stop) + ")"
+            );
 
         if (row.stop > other.row())
-            throw std::out_of_range("row slice stop exceeds matrix row count");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "row slice stop (" +
+                std::to_string(row.stop) +
+                ") exceeds matrix row count (" +
+                std::to_string(other.row()) + ")"
+            );
 
         if (col.stop > other.col())
-            throw std::out_of_range("column slice stop exceeds matrix column count");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "column slice stop (" +
+                std::to_string(col.stop) +
+                ") exceeds matrix column count (" +
+                std::to_string(other.col()) + ")"
+            );
 
         size_t rows = (row.stop - row.start + row.step - 1) / row.step;
         size_t cols = (col.stop - col.start + col.step - 1) / col.step;
@@ -54,14 +86,29 @@ namespace numpp {
     template<typename T>
     template<strided_matrix EXPR>
     matrix_view<T>::matrix_view(EXPR& other, detail::all_t, slice_range col) {
-        if (col.step == 0)
-            throw std::invalid_argument("column slice step must be greater than zero");
-
+         if (col.step == 0)
+            throw std::invalid_argument(
+                "numpp::operation<slice> error: "
+                "column slice step must be greater than zero"
+            );
+        
         if (col.start > col.stop)
-            throw std::out_of_range("column slice start cannot be greater than stop");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "column slice start (" +
+                std::to_string(col.start) +
+                ") cannot be greater than stop (" +
+                std::to_string(col.stop) + ")"
+            );
 
         if (col.stop > other.col())
-            throw std::out_of_range("column slice stop exceeds matrix column count");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "column slice stop (" +
+                std::to_string(col.stop) +
+                ") exceeds matrix column count (" +
+                std::to_string(other.col()) + ")"
+            );
 
         size_t cols = ((col.stop - col.start) + col.step - 1) / col.step;
 
@@ -82,13 +129,28 @@ namespace numpp {
     template<strided_matrix EXPR>
     matrix_view<T>::matrix_view(EXPR& other, slice_range row, detail::all_t) {
         if (row.step == 0)
-            throw std::invalid_argument("row slice step must be greater than zero");
+            throw std::invalid_argument(
+                "numpp::operation<slice> error: "
+                "row slice step must be greater than zero"
+            );
 
         if (row.start > row.stop)
-            throw std::out_of_range("row slice start cannot be greater than stop");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "row slice start (" +
+                std::to_string(row.start) +
+                ") cannot be greater than stop (" +
+                std::to_string(row.stop) + ")"
+            );
 
         if (row.stop > other.row())
-            throw std::out_of_range("row slice stop exceeds matrix row count");
+            throw std::out_of_range(
+                "numpp::operation<slice> error: "
+                "row slice stop (" +
+                std::to_string(row.stop) +
+                ") exceeds matrix row count (" +
+                std::to_string(other.row()) + ")"
+            );
 
         size_t rows = ((row.stop - row.start) + row.step - 1) / row.step;
 

@@ -7,6 +7,7 @@
 
 #include <numpp/backend/blas.hpp>
 #include <type_traits>
+#include <string>
 
 namespace numpp {
     namespace linalg {
@@ -431,7 +432,20 @@ namespace numpp {
         auto matmul(const A& a, const B& b) {
             using T = typename A::value_type;
             if (a.col() != b.row())
-                throw std::invalid_argument("matrix dimensions are incompatible for matrix multiplication");
+                throw std::invalid_argument(
+                    "numpp::operation<matmul> error: "
+                    "cannot multiply " +
+                    std::to_string(a.row()) + "x" +
+                    std::to_string(a.col()) +
+                    " by " +
+                    std::to_string(b.row()) + "x" +
+                    std::to_string(b.col()) +
+                    ": left columns (" +
+                    std::to_string(a.col()) +
+                    ") must match right rows (" +
+                    std::to_string(b.row()) +
+                    ")"
+                );
 
             const size_t M = a.row();
             const size_t N = b.col();

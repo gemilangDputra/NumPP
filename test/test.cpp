@@ -1,106 +1,93 @@
 #include <numpp/matrix.hpp>
-#include <numpp/matrix/linalg/matmul.hpp>
 #include <iostream>
+#include <stdexcept>
 
 int main() {
     numpp::matrix<double> a({
-        {11.1, 12.2, 13.3, 14.4, 15.5},
-        {21.6, 22.7, 23.8, 24.9, 25.0},
-        {31.1, 32.2, 33.3, 34.4, 35.5},
-        {41.6, 42.7, 43.8, 44.9, 45.0},
-        {51.1, 52.2, 53.3, 54.4, 55.5}
-    }, numpp::layout::rowmajor);
+        {1.0, 2.0, 3.0, 4.0, 5.0},
+        {6.0, 7.0, 8.0, 9.0, 0.1},
+        {1.1, 2.1, 3.1, 4.1, 5.1},
+        {6.1, 7.1, 8.1, 9.1, 0.2},
+        {1.2, 2.2, 3.2, 4.2, 5.2}
+    });
 
     numpp::matrix<double> b({
-        {11.1, 21.2, 31.3, 41.4, 51.5},
-        {21.6, 22.7, 23.8, 24.9, 25.0},
-        {31.1, 32.2, 33.3, 34.4, 35.5},
-        {41.6, 42.7, 43.8, 44.9, 45.0},
-        {51.1, 52.2, 53.3, 54.4, 55.5}
-    }, numpp::layout::colmajor);
+        {1.0, 2.0, 3.0, 4.0, 5.0},
+        {6.0, 7.0, 8.0, 9.0, 0.1},
+        {1.1, 2.1, 3.1, 4.1, 5.1},
+        {6.1, 7.1, 8.1, 9.1, 0.2},
+        {1.2, 2.2, 3.2, 4.2, 5.2}
+    });
+
+    // ============================================================
+    // operator+
+    // ============================================================
+
+    // Normal path: same shape
+    auto add_normal = a + b;
+
+    std::cout << "operator+ normal:\n";
+    std::cout << add_normal << '\n';
 
 
-    // Matrix khusus untuk testing slice: 5 × 6
-    numpp::matrix<double> c({
-        {11, 12, 13, 14, 15, 16},
-        {21, 22, 23, 24, 25, 26},
-        {31, 32, 33, 34, 35, 36},
-        {41, 42, 43, 44, 45, 46},
-        {51, 52, 53, 54, 55, 56}
-    }, numpp::layout::rowmajor);
+    // Broadcast path: 5x5 + 1x5
+    numpp::matrix<double> row_vector({
+        {10.0, 20.0, 30.0, 40.0, 50.0}
+    });
+
+    auto add_broadcast = a + row_vector;
+
+    std::cout << "operator+ broadcast:\n";
+    std::cout << add_broadcast << '\n';
 
 
-    // Matrix khusus untuk testing reshape: 3 × 5
-    // 15 elements → reshape menjadi 3 × 5
-    numpp::matrix<double> d({
-        {11, 12, 13, 14, 15},
-        {21, 22, 23, 24, 25},
-        {31, 32, 33, 34, 35}
-    }, numpp::layout::rowmajor);
+    // Error path
+    numpp::matrix<double> invalid_add({
+        {1.0, 2.0, 3.0},
+        {4.0, 5.0, 6.0},
+        {7.0, 8.0, 9.0}
+    });
+
+    try {
+        auto add_error = a + invalid_add;
+        std::cout << add_error << '\n';
+    }
+    catch (const std::exception& e) {
+        std::cout << "operator+ exception:\n";
+        std::cout << e.what() << '\n';
+    }
+
+    // Normal path: same shape
+    auto add_assign_normal = numpp::matrix<double>::zeros_like(a);
+    add_assign_normal += a;
+
+    std::cout << "operator+= normal:\n";
+    std::cout << add_assign_normal << '\n';
 
 
-    // Basic matrix multiplication
-    auto test_1 = numpp::linalg::matmul(a, a);
+    // Broadcast path: 5x5 += 5x1
+    numpp::matrix<double> col_vector({
+        {10.0},
+        {20.0},
+        {30.0},
+        {40.0},
+        {50.0}
+    });
 
-    // Same operation with column-major matrices
-    auto test_2 = numpp::linalg::matmul(b, b);
+    auto add_assign_broadcast = numpp::matrix<double>::zeros_like(a);
+    add_assign_broadcast += col_vector;
 
-    // Different layouts
-    auto test_3 = numpp::linalg::matmul(a, b);
-
-    // Transpose view
-    auto test_4 = numpp::linalg::matmul(
-        a,
-        numpp::transpose(b)
-    );
-
-    // Transpose view
-    auto test_5 = numpp::linalg::matmul(
-        a,
-        numpp::transpose(a)
-    );
-
-    // Actual slice:
-    //
-    // c = 5 × 6
-    // columns [1, 4) → 5 × 3
-    //
-    // a = 5 × 5
-    // slice(c) = 5 × 3
-    //
-    // 5 × 5 × 5 × 3 → 5 × 3
-    auto test_6 = numpp::linalg::matmul(
-        a,
-        numpp::slice(
-            c,
-            numpp::all,
-            numpp::slice_range(1, 4, 1)
-        )
-    );
-
-    // Actual reshape + transpose:
-    //
-    // d = 3 × 5 = 15 elements
-    //
-    // reshape(d, 3, 5) → 3 × 5
-    // transpose        → 5 × 3
-    //
-    // a = 5 × 5
-    //
-    // 5 × 5 × 5 × 3 → 5 × 3
-    auto test_7 = numpp::linalg::matmul(
-        a,
-        numpp::transpose(
-            numpp::reshape(d, 3, 5)
-        )
-    );
+    std::cout << "operator+= broadcast:\n";
+    std::cout << add_assign_broadcast << '\n';
 
 
-    std::cout << test_1 << '\n';
-    std::cout << test_2 << '\n';
-    std::cout << test_3 << '\n';
-    std::cout << test_4 << '\n';
-    std::cout << test_5 << '\n';
-    std::cout << test_6 << '\n';
-    std::cout << test_7 << '\n';
+    // Error path
+    try {
+        auto add_assign_error = numpp::matrix<double>::zeros_like(a);
+        add_assign_error += invalid_add;
+    }
+    catch (const std::exception& e) {
+        std::cout << "operator+= exception:\n";
+        std::cout << e.what() << '\n';
+    }
 }

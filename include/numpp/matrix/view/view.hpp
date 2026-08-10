@@ -4,6 +4,8 @@
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
 
+#include <string>
+
 namespace numpp {
     template<typename T>
     class matrix_view : public matrix_base<matrix_view<T>, T> {
@@ -130,6 +132,36 @@ namespace numpp {
     template<strided_matrix EXPR>
     auto view(const EXPR& other) {
         return matrix_view<const typename EXPR::value_type>(other);
+    }
+
+    template<typename T>
+    auto view(T* data, size_t row, size_t col, layout order) {
+        const size_t rowstride = order == layout::rowmajor ? col : 1;
+        const size_t colstride = order == layout::rowmajor ? 1 : row;
+        return matrix_view<T>(data, row*col, row, col, rowstride, colstride, order, 0);
+    }
+    
+    template<typename T>
+    auto view(const T* data, size_t row, size_t col, layout order) {
+        const size_t rowstride = order == layout::rowmajor ? col : 1;
+        const size_t colstride = order == layout::rowmajor ? 1 : row;
+        return matrix_view<const T>(data, row*col, row, col, rowstride, colstride, order, 0);
+    }
+
+    template<vector_1d EXPR>
+    auto view(EXPR& vector, size_t row, size_t col, layout order) {
+        if (vector.size() != row*col)
+            throw std::invalid_argument(
+                "numpp::operation<view(vector, ...)> error: "
+                "cannot reshape vector: requested shape is " +
+                std::to_string(row) + "x" + std::to_string(col) +
+                ", but vector contains " +
+                std::to_string(vector.size()) + " elements"
+            );
+        
+        const size_t rowstride = order == layout::rowmajor ? col : 1;
+        const size_t colstride = order == layout::rowmajor ? 1 : row;
+        return matrix_view<typename EXPR::value_type>(vector.data(),vector.size(), row, col, rowstride, colstride, order, 0);
     }
 }
 
