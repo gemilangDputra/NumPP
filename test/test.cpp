@@ -2,33 +2,42 @@
 #include <numpp/matrix/linalg/matmul.hpp>
 #include <iostream>
 
+template<typename T>
+class Mymatrix {
+    private:
+        numpp::matrix<T> data_;
+    public:
+        using value_type = T;
+
+        Mymatrix(const numpp::matrix<T>& matrix)
+            : data_(matrix) {}
+
+        std::size_t row() const { return data_.row(); }
+        std::size_t col() const { return data_.col(); }
+        std::size_t size() const { return data_.size(); }
+        std::size_t rowstride() const { return data_.rowstride(); }
+        std::size_t colstride() const { return data_.colstride(); }
+        numpp::layout order() const { return data_.order(); }
+        std::size_t offset() const { return data_.offset(); }
+        T* data() { return data_.data(); }
+        const T* data() const { return data_.data(); }
+        T& operator()(std::size_t i, std::size_t j) { return data_(i, j); }
+        const T& operator()(std::size_t i, std::size_t j) const { return data_(i, j); }
+};
+
 int main() {
-    numpp::matrix<double> a({
-        {100.0, 101.0, 102.0, 103.0, 104.0, 105.0},
-        {110.0, 111.0, 112.0, 113.0, 114.0, 115.0},
-        {120.0, 121.0, 122.0, 123.0, 124.0, 125.0},
-        {130.0, 131.0, 132.0, 133.0, 134.0, 135.0},
-        {140.0, 141.0, 142.0, 143.0, 144.0, 145.0},
-        {150.0, 151.0, 152.0, 153.0, 154.0, 155.0}
+    numpp::matrix matrix({
+        { 1, 2, 3, 4, 5},
+        { 6, 7, 8, 9,10},
+        {11,12,13,14,15},
+        {16,17,18,19,20},
+        {21,22,23,24,25}
     });
+    Mymatrix custom1(matrix);
 
-    numpp::matrix<double> b = numpp::matrix<double>::full(6,6, 0.111);
+    numpp::matrix_view view = numpp::view(custom1);
+    std::cout << view << '\n';
 
-    auto b_slice = b.slice(
-        numpp::slice_range(0,4),
-        numpp::slice_range(0,4)
-    );
-
-    auto a_slice = a.slice(
-        numpp::slice_range(1, 5),
-        numpp::slice_range(1, 5)
-    );
-
-    numpp::print_option print_option;
-    print_option.floatformat = numpp::print_option::format::fixed;
-    
-    std::cout << print_option;
-    std::cout << "before:\n" << a << '\n';
-    a_slice += b_slice;
-    std::cout << "after:\n"  << a << '\n';
+    auto c =  custom1 + matrix - 5 * matrix;
+    std::cout << c << '\n';
 }

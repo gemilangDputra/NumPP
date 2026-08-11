@@ -5,162 +5,68 @@
 #include <numpp/matrix/tool.hpp>
 #include <numpp/matrix/matrix.hpp>
 #include <numpp/matrix/view/broadcast.hpp>
-#include <utility>
-#include <string>
 
 namespace numpp {
-    template<matrix_derived EXPR> requires (can_add<typename EXPR::value_type>)
-    matrix<typename EXPR::value_type> operator+(const EXPR& mat, const typename EXPR::value_type& scalar) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] + scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) + scalar;
-                }
+    namespace detail {
+    template<matrix_derived EXPR, typename Op>
+    matrix<typename EXPR::value_type> matrix_op_scalar_expr(const EXPR& a,const typename EXPR::value_type& scalar, Op op) {
+        using T = typename EXPR::value_type;
+        matrix<T> out = matrix<T>::empty_like(a);
+        if (is_contiguous(a) && a.offset() == 0) {
+            const auto* adata = a.data();
+            auto* cdata = out.data();
+            for (size_t i = 0; i < out.size(); ++i)
+                cdata[i] = op(adata[i], scalar);
+        }
+        else {
+            for (size_t i = 0; i < a.row(); ++i) {
+                for (size_t j = 0; j < a.col(); ++j)
+                    out(i, j) = op(a(i, j), scalar);
             }
         }
         return out;
+    }
+
+    }
+    template<matrix_derived EXPR> requires (can_add<typename EXPR::value_type>)
+    matrix<typename EXPR::value_type> operator+(const EXPR& mat, const typename EXPR::value_type& scalar) {
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return x + y; });
     }
     
     template<matrix_derived EXPR> requires (can_sub<typename EXPR::value_type>)
     matrix<typename EXPR::value_type> operator-(const EXPR& mat, const typename EXPR::value_type& scalar) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] - scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) - scalar;
-                }
-            }
-        }
-        return out;
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return x - y; });
     }
     
     template<matrix_derived EXPR> requires (can_mul<typename EXPR::value_type>)
     matrix<typename EXPR::value_type> operator*(const EXPR& mat, const typename EXPR::value_type& scalar) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] * scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) * scalar;
-                }
-            }
-        }
-        return out;
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return x * y; });
     }
 
     
     template<matrix_derived EXPR> requires (can_div<typename EXPR::value_type>)
     matrix<typename EXPR::value_type> operator/(const EXPR& mat, const typename EXPR::value_type& scalar) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] / scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) / scalar;
-                }
-            }
-        }
-        return out;
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return x / y; });
     }
 
     template<matrix_derived EXPR> requires (can_add<typename EXPR::value_type>)
     matrix<typename EXPR::value_type> operator+(const typename EXPR::value_type& scalar, const EXPR& mat) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] + scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) + scalar;
-                }
-            }
-        }
-        return out;
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return y + x; });
     }
 
     template<matrix_derived EXPR> requires (can_sub<typename EXPR::value_type>)
     matrix<typename EXPR::value_type> operator-(const typename EXPR::value_type& scalar, const EXPR& mat) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] - scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) - scalar;
-                }
-            }
-        }
-        return out;
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return y - x; });
     }
     
     template<matrix_derived EXPR> requires (can_mul<typename EXPR::value_type>)
     matrix<typename EXPR::value_type> operator*(const typename EXPR::value_type& scalar, const EXPR& mat) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] * scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) * scalar;
-                }
-            }
-        }
-        return out;
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return y * x; });
     }
-
     
     template<matrix_derived EXPR> requires (can_div<typename EXPR::value_type>)
     matrix<typename EXPR::value_type> operator/(const typename EXPR::value_type& scalar, const EXPR& mat) {
-        matrix<typename EXPR::value_type> out = matrix<typename EXPR::value_type>::empty_like(mat);
-        if (is_contiguous(mat) && mat.offset() == 0) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i=0; i < out.size(); ++i) {
-                cdata[i] = adata[i] / scalar;
-            }
-        } else {
-            for (size_t i=0; i < mat.row(); ++i) {
-                for (size_t j=0; j < mat.col(); ++j) {
-                    out(i,j) = mat(i,j) / scalar;
-                }
-            }
-        }
-        return out;
+        return detail::matrix_op_scalar_expr(mat, scalar,[](auto x, auto y) { return y / x; });
     }
 
     template<class Derived, typename T>
