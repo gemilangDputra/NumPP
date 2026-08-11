@@ -38,6 +38,16 @@ namespace numpp {
         }
         && (!requires(const EXPR& v) { v.row(); })
         && (!requires(const EXPR& v) { v.col(); });
+
+    template<strided_matrix EXPR>
+    bool is_transpose(const EXPR& mat) {
+        if (mat.order() == layout::rowmajor)
+            return mat.rowstride() == 1 &&
+                   mat.colstride() == mat.row();
+
+        return mat.rowstride() == mat.col() &&
+               mat.colstride() == 1;
+    }
     
     template<strided_matrix EXPR>
     bool is_contiguous(const EXPR& mat) {
@@ -59,16 +69,6 @@ namespace numpp {
             mat.colstride() == 1
             : mat.rowstride() == 1 &&
             mat.colstride() == mat.row();
-    }
-
-    template<strided_matrix EXPR>
-    bool is_transpose(const EXPR& mat) {
-        if (mat.order() == layout::rowmajor)
-            return mat.rowstride() == 1 &&
-                   mat.colstride() == mat.row();
-
-        return mat.rowstride() == mat.col() &&
-               mat.colstride() == 1;
     }
 
     template<typename T>

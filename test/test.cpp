@@ -1,93 +1,34 @@
 #include <numpp/matrix.hpp>
+#include <numpp/matrix/linalg/matmul.hpp>
 #include <iostream>
-#include <stdexcept>
 
 int main() {
     numpp::matrix<double> a({
-        {1.0, 2.0, 3.0, 4.0, 5.0},
-        {6.0, 7.0, 8.0, 9.0, 0.1},
-        {1.1, 2.1, 3.1, 4.1, 5.1},
-        {6.1, 7.1, 8.1, 9.1, 0.2},
-        {1.2, 2.2, 3.2, 4.2, 5.2}
+        {100.0, 101.0, 102.0, 103.0, 104.0, 105.0},
+        {110.0, 111.0, 112.0, 113.0, 114.0, 115.0},
+        {120.0, 121.0, 122.0, 123.0, 124.0, 125.0},
+        {130.0, 131.0, 132.0, 133.0, 134.0, 135.0},
+        {140.0, 141.0, 142.0, 143.0, 144.0, 145.0},
+        {150.0, 151.0, 152.0, 153.0, 154.0, 155.0}
     });
 
-    numpp::matrix<double> b({
-        {1.0, 2.0, 3.0, 4.0, 5.0},
-        {6.0, 7.0, 8.0, 9.0, 0.1},
-        {1.1, 2.1, 3.1, 4.1, 5.1},
-        {6.1, 7.1, 8.1, 9.1, 0.2},
-        {1.2, 2.2, 3.2, 4.2, 5.2}
-    });
+    numpp::matrix<double> b = numpp::matrix<double>::full(6,6, 0.111);
 
-    // ============================================================
-    // operator+
-    // ============================================================
+    auto b_slice = b.slice(
+        numpp::slice_range(0,4),
+        numpp::slice_range(0,4)
+    );
 
-    // Normal path: same shape
-    auto add_normal = a + b;
+    auto a_slice = a.slice(
+        numpp::slice_range(1, 5),
+        numpp::slice_range(1, 5)
+    );
 
-    std::cout << "operator+ normal:\n";
-    std::cout << add_normal << '\n';
-
-
-    // Broadcast path: 5x5 + 1x5
-    numpp::matrix<double> row_vector({
-        {10.0, 20.0, 30.0, 40.0, 50.0}
-    });
-
-    auto add_broadcast = a + row_vector;
-
-    std::cout << "operator+ broadcast:\n";
-    std::cout << add_broadcast << '\n';
-
-
-    // Error path
-    numpp::matrix<double> invalid_add({
-        {1.0, 2.0, 3.0},
-        {4.0, 5.0, 6.0},
-        {7.0, 8.0, 9.0}
-    });
-
-    try {
-        auto add_error = a + invalid_add;
-        std::cout << add_error << '\n';
-    }
-    catch (const std::exception& e) {
-        std::cout << "operator+ exception:\n";
-        std::cout << e.what() << '\n';
-    }
-
-    // Normal path: same shape
-    auto add_assign_normal = numpp::matrix<double>::zeros_like(a);
-    add_assign_normal += a;
-
-    std::cout << "operator+= normal:\n";
-    std::cout << add_assign_normal << '\n';
-
-
-    // Broadcast path: 5x5 += 5x1
-    numpp::matrix<double> col_vector({
-        {10.0},
-        {20.0},
-        {30.0},
-        {40.0},
-        {50.0}
-    });
-
-    auto add_assign_broadcast = numpp::matrix<double>::zeros_like(a);
-    add_assign_broadcast += col_vector;
-
-    std::cout << "operator+= broadcast:\n";
-    std::cout << add_assign_broadcast << '\n';
-
-
-    // Error path
-    try {
-        auto add_assign_error = numpp::matrix<double>::zeros_like(a);
-        add_assign_error += invalid_add;
-    }
-    catch (const std::exception& e) {
-        std::cout << "operator+= exception:\n";
-        std::cout << e.what() << '\n';
-    }
+    numpp::print_option print_option;
+    print_option.floatformat = numpp::print_option::format::fixed;
+    
+    std::cout << print_option;
+    std::cout << "before:\n" << a << '\n';
+    a_slice += b_slice;
+    std::cout << "after:\n" << a << '\n';
 }

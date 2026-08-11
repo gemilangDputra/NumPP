@@ -114,6 +114,11 @@ namespace numpp {
             template<strided_matrix B>
             requires (std::same_as<T, typename B::value_type> && can_div_assign<T>)
             matrix_base<Derived, T>& operator/=(const B& b);
+            
+            matrix_base<Derived, T>& operator+=(const T& scalar) requires (can_add_assign<T>);
+            matrix_base<Derived, T>& operator-=(const T& scalar) requires (can_sub_assign<T>);
+            matrix_base<Derived, T>& operator*=(const T& scalar) requires (can_mul_assign<T>);
+            matrix_base<Derived, T>& operator/=(const T& scalar) requires (can_div_assign<T>);
         private: 
             Derived& derived() {
                 return static_cast<Derived&>(*this);

@@ -65,15 +65,8 @@ namespace numpp {
         matrix<T> out;
         out.row_ = other.row();
         out.col_ = other.col();
-
-        out.rowstride_ = other.rowstride();
-        out.colstride_ = other.colstride();
-
-        out.size_ = other.size();
-
-        out.order_ = other.order();
-        out.offset_ = other.offset();
-
+        out.compute_stride(other.order());
+        out.size_ = other.row() * other.col();
         out.alloc();
 
         return out;
@@ -85,16 +78,10 @@ namespace numpp {
         matrix<T> out;
         out.row_ = other.row();
         out.col_ = other.col();
-
-        out.rowstride_ = other.rowstride();
-        out.colstride_ = other.colstride();
-
-        out.size_ = other.size();
-
-        out.order_ = other.order();
-        out.offset_ = other.offset();
-
+        out.compute_stride(other.order());
+        out.size_ = other.row() * other.col();
         out.alloc(true);
+
         return out;
     }
 
@@ -104,15 +91,8 @@ namespace numpp {
         matrix<T> out;
         out.row_ = other.row();
         out.col_ = other.col();
-
-        out.rowstride_ = other.rowstride();
-        out.colstride_ = other.colstride();
-
-        out.size_ = other.size();
-
-        out.order_ = other.order();
-        out.offset_ = other.offset();
-
+        out.compute_stride(other.order());
+        out.size_ = other.row() * other.col();
         out.alloc();
 
         for (size_t i=0; i < other.size(); ++i) out->data_[i] = T{1};
@@ -124,16 +104,10 @@ namespace numpp {
     matrix<T> matrix<T>::full_like(const EXPR& other, const T& value) {
         matrix<T> out;
         out.row_ = other.row();
+        out.row_ = other.row();
         out.col_ = other.col();
-
-        out.rowstride_ = other.rowstride();
-        out.colstride_ = other.colstride();
-
-        out.size_ = other.size();
-
-        out.order_ = other.order();
-        out.offset_ = other.offset();
-
+        out.compute_stride(other.order());
+        out.size_ = other.row() * other.col();
         out.alloc();
 
         for (size_t i=0; i < other.size(); ++i) out->data_[i] = value;
@@ -234,20 +208,18 @@ namespace numpp {
     template<typename T>
     template<strided_matrix EXPR>
     matrix<T>& matrix<T>::operator=(const EXPR& other) {
-        if (*this != &other) {
-            del();
-            this->row_ = other.row();
-            this->col_ = other.col();
-            this->compute_stride(other.order());
+        del();
+        this->row_ = other.row();
+        this->col_ = other.col();
+        this->compute_stride(other.order());
 
-            this->size_ = this->row_ * this->col_;
-            this->offset_ = 0;
+        this->size_ = this->row_ * this->col_;
+        this->offset_ = 0;
 
-            alloc();
-            for (size_t i = 0; i < this->row_; ++i)
-                for (size_t j = 0; j < this->col_; ++j)
-                    (*this)(i, j) = other(i, j);
-        }
+        alloc();
+        for (size_t i = 0; i < this->row_; ++i)
+            for (size_t j = 0; j < this->col_; ++j)
+                (*this)(i, j) = other(i, j);
         return *this;
     }
 
@@ -269,7 +241,7 @@ namespace numpp {
     
     template<typename T>
     matrix<T>& matrix<T>::operator=(const matrix<T>& other) {
-        if (*this != &other) {
+        if (this != &other) {
             del();
             this->row_ = other.row();
             this->col_ = other.col();
@@ -302,6 +274,7 @@ namespace numpp {
     template<typename T>
     matrix<T>& matrix<T>::operator=(matrix<T>&& other) noexcept {
         if (this != &other) {
+            del();
             this->row_ = other.row_;
             this->col_ = other.col_;
             this->rowstride_ = other.rowstride_;
