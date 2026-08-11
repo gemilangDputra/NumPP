@@ -24,36 +24,8 @@ namespace numpp {
                 );
             }
 
-            matrix_view(const matrix_view& other) {
-                this->init_metadata(
-                    other.data(),
-                    other.size(),
-                    other.row(),
-                    other.col(),
-                    other.rowstride(),
-                    other.colstride(),
-                    other.order(),
-                    other.offset()
-                );
-            }
-
             template<strided_matrix EXPR>
             matrix_view& operator=(EXPR& other) {
-                this->init_metadata(
-                    other.data(),
-                    other.size(),
-                    other.row(),
-                    other.col(),
-                    other.rowstride(),
-                    other.colstride(),
-                    other.order(),
-                    other.offset()
-                );
-
-                return *this;
-            }
-
-            matrix_view& operator=(const matrix_view& other) {
                 this->init_metadata(
                     other.data(),
                     other.size(),
