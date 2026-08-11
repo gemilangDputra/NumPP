@@ -30,5 +30,5 @@ int main() {
     std::cout << print_option;
     std::cout << "before:\n" << a << '\n';
     a_slice += b_slice;
-    std::cout << "after:\n" << a << '\n';
+    std::cout << "after:\n"  << a << '\n';
 }
