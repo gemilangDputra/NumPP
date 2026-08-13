@@ -87,7 +87,7 @@ namespace numpp::detail {
         );
     }
 
-template<strided_matrix M>
+template<matrix_like M>
 int blas_leading_dimension(
     const M& mat,
     CBLAS_ORDER,

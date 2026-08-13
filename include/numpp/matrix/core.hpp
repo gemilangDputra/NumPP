@@ -99,20 +99,20 @@ namespace numpp {
             matrix_view<T> reshape(size_t newrow, size_t newcol);
             matrix_view<const T> reshape(size_t newrow, size_t newcol) const;
 
-            template<strided_matrix B>
-            requires (std::same_as<T, typename B::value_type> && can_add_assign<T>)
+            template<matrix_like B>
+            requires (std::same_as<value_type, typename B::value_type> && can_add_assign<T>)
             matrix_base<Derived, T>& operator+=(const B& b);
             
-            template<strided_matrix B>
-            requires (std::same_as<T, typename B::value_type> && can_sub_assign<T>)
+            template<matrix_like B>
+            requires (std::same_as<value_type, typename B::value_type> && can_sub_assign<T>)
             matrix_base<Derived, T>& operator-=(const B& b);
             
-            template<strided_matrix B>
-            requires (std::same_as<T, typename B::value_type> && can_mul_assign<T>)
+            template<matrix_like B>
+            requires (std::same_as<value_type, typename B::value_type> && can_mul_assign<T>)
             matrix_base<Derived, T>& operator*=(const B& b);
             
-            template<strided_matrix B>
-            requires (std::same_as<T, typename B::value_type> && can_div_assign<T>)
+            template<matrix_like B>
+            requires (std::same_as<value_type, typename B::value_type> && can_div_assign<T>)
             matrix_base<Derived, T>& operator/=(const B& b);
             
             matrix_base<Derived, T>& operator+=(const T& scalar) requires (can_add_assign<T>);

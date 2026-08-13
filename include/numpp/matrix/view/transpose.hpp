@@ -6,7 +6,7 @@
 
 namespace numpp {
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix_view<T>::matrix_view(EXPR& other, detail::transflag_t) {
         this->init_metadata(
             other.data(),
@@ -30,12 +30,12 @@ namespace numpp {
         return matrix_view<const T>(derived(), detail::transflag);
     }
 
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     auto transpose(EXPR& mat)  {
         return matrix_view<typename EXPR::value_type>(mat, detail::transflag);
     }
 
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     auto transpose(const EXPR& mat)  {
         return matrix_view<const typename EXPR::value_type>(mat, detail::transflag);
     }

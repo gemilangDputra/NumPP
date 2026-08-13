@@ -8,14 +8,14 @@
 #include <utility>
 
 namespace numpp::detail {
-    template<strided_matrix A, strided_matrix B>
+    template<matrix_like A, matrix_like B>
     bool is_broadcastable(const A& a, const B& b) {
         return
             (a.row() == b.row() || a.row() == 1 || b.row() == 1) &&
             (a.col() == b.col() || a.col() == 1 || b.col() == 1);
     }
 
-    template<strided_matrix A, strided_matrix B>
+    template<matrix_like A, matrix_like B>
     requires std::same_as<
         typename A::value_type,
         typename B::value_type

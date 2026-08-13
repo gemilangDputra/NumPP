@@ -27,13 +27,13 @@ namespace numpp {
 
             matrix(std::initializer_list<std::initializer_list<T>> list, layout order=layout::rowmajor);
 
-            template<strided_matrix EXPR>
+            template<matrix_like EXPR>
             matrix(const EXPR& other);
 
             matrix(const matrix& other);
             matrix(matrix&& other) noexcept;
 
-            template<strided_matrix EXPR>
+            template<matrix_like EXPR>
             matrix<T>& operator=(const EXPR& other);
 
             matrix<T>& operator=(const matrix& other);
@@ -44,13 +44,13 @@ namespace numpp {
             static matrix ones(size_t row, size_t col, layout order=layout::rowmajor);
             static matrix full(size_t row, size_t col, const T& value, layout order=layout::rowmajor);
 
-            template<strided_matrix EXPR>
+            template<matrix_like EXPR>
             static matrix<T> empty_like(const EXPR& other);
-            template<strided_matrix EXPR>
+            template<matrix_like EXPR>
             static matrix<T> zeros_like(const EXPR& other);
-            template<strided_matrix EXPR>
+            template<matrix_like EXPR>
             static matrix<T> ones_like(const EXPR& other);
-            template<strided_matrix EXPR>
+            template<matrix_like EXPR>
             static matrix<T> full_like(const EXPR& other, const T& value);
 
             static matrix eye(size_t row, size_t col, int k=0, layout order=layout::rowmajor);

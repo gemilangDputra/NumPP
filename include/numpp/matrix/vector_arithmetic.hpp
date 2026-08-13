@@ -9,7 +9,7 @@
 #include <string>
 
 namespace numpp {
-    template<matrix_derived A, strided_matrix B>
+    template<numpp_matrix A, matrix_like B>
     requires (
         std::same_as<
             typename A::value_type,

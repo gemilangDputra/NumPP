@@ -8,10 +8,10 @@
 #include <utility>
 #include <string>
 #include <string_view>
-
+#include <iostream>
 namespace numpp {
     namespace detail {
-        template<strided_matrix A, strided_matrix B, typename Op>
+        template<matrix_like A, matrix_like B, typename Op>
         requires std::same_as<
             typename A::value_type,
             typename B::value_type
@@ -22,11 +22,42 @@ namespace numpp {
             if (a.row() == b.row() && a.col() == b.col()) {
                 matrix<T> out = matrix<T>::empty_like(a);
                 if (is_contiguous(a) && is_contiguous(b)) {
-                    const auto* adata = a.data();
-                    const auto* bdata = b.data();
-                    auto* cdata = out.data();
-                    for (size_t i = 0; i < out.size(); ++i)
-                        cdata[i] = op(adata[i], bdata[i]);
+                    if (a.rowstride() == b.rowstride() && a.colstride() == b.colstride()) {
+                        const auto* adata = a.data() + a.offset();
+                        const auto* bdata = b.data() + b.offset();
+                        auto* cdata = out.data();
+                        for (size_t i = 0; i < out.size(); ++i)
+                            cdata[i] = op(adata[i], bdata[i]);
+                    }
+                    else {
+                        const auto* adata = a.data() + a.offset();
+                        const auto* bdata = b.data() + b.offset();
+                        auto* cdata = out.data();
+                        const size_t rows = out.row();
+                        const size_t cols = out.col();
+                        if (a.colstride() == 1) {
+                            for (size_t i = 0; i < rows; ++i) {
+                                const auto* ap = adata + i * a.rowstride();
+                                const auto* bp = bdata + i * b.rowstride();
+                                auto* cp = cdata + i * out.rowstride();
+                                for (size_t j = 0; j < cols; ++j) {
+                                    *cp++ = op(*ap++, *bp);
+                                    bp += b.colstride();
+                                }
+                            }
+                        }
+                        else {
+                            for (size_t j = 0; j < cols; ++j) {
+                                const auto* ap = adata + j * a.colstride();
+                                const auto* bp = bdata + j * b.colstride();
+                                auto* cp = cdata + j * out.colstride();
+                                for (size_t i = 0; i < rows; ++i) {
+                                    *cp++ = op(*ap++, *bp);
+                                    bp += b.rowstride();
+                                }
+                            }
+                        }
+                    }
                 }
                 else {
                     for (size_t i = 0; i < out.row(); ++i) {
@@ -41,7 +72,7 @@ namespace numpp {
                 auto [ab, bb] = broadcast(a, b);
                 matrix<T> out = matrix<T>::empty_like(ab);
                 for (size_t i = 0; i < out.row(); ++i) {
-                    for (size_t j = 0; j < out.col(); ++j)
+                    for (size_t j = 0; j < out.col(); ++j) 
                         out(i, j) = op(ab(i, j), bb(i, j));
                 }
                 return out;
@@ -61,24 +92,46 @@ namespace numpp {
         }
 
         
-        template<strided_matrix A, strided_matrix B, typename Op>
+        template<matrix_like A, matrix_like B, typename Op>
         requires std::same_as<
             typename A::value_type,
             typename B::value_type
         >
-        A& matrix_op_assign_expr(
-            A& a,
-            const B& b,
-            Op op,
-            std::string_view operation_name
-        ) {
+        A& matrix_op_assign_expr(A& a, const B& b, Op op, std::string_view operation_name) {
             if (a.row() == b.row() && a.col() == b.col()) {
                 if (is_contiguous(a) && is_contiguous(b)) {
-                    auto* adata = a.data();
-                    const auto* bdata = b.data();
+                    if (a.rowstride() == b.rowstride() && a.colstride() == b.colstride()) {
+                        auto* adata = a.data() + a.offset();
+                        const auto* bdata = b.data() + b.offset();
+                        for (size_t i = 0; i < a.size(); ++i)
+                            op(adata[i], bdata[i]);
+                    } else {
+                        auto* adata = a.data() + a.offset();
+                        const auto* bdata = b.data() + b.offset();
+                        const size_t rows = a.row();
+                        const size_t cols = a.col();
+                        if (a.colstride() == 1) {
+                            for (size_t i = 0; i < rows; ++i) {
+                                auto* ap = adata + i * a.rowstride();
+                                const auto* bp = bdata + i * b.rowstride();
 
-                    for (size_t i = 0; i < a.size(); ++i)
-                        op(adata[i], bdata[i]);
+                                for (size_t j = 0; j < cols; ++j) {
+                                    op(*ap++, *bp);
+                                    bp += b.colstride();
+                                }
+                            }
+                        }
+                        else {
+                            for (size_t j = 0; j < cols; ++j) {
+                                auto* ap = adata + j * a.colstride();
+                                const auto* bp = bdata + j * b.colstride();
+                                for (size_t i = 0; i < rows; ++i) {
+                                    op(*ap++, *bp);
+                                    bp += b.rowstride();
+                                }
+                            }
+                        }
+                    }
                 }
                 else {
                     for (size_t i = 0; i < a.row(); ++i) {
@@ -148,7 +201,7 @@ namespace numpp {
         }
     }
 
-    template<matrix_derived A, strided_matrix B>
+    template<numpp_matrix A, matrix_like B>
     requires (
         std::same_as<
             typename A::value_type,
@@ -160,7 +213,7 @@ namespace numpp {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x + y; }, "add");
     }
 
-    template<matrix_derived A, strided_matrix B>
+    template<numpp_matrix A, matrix_like B>
     requires (
         std::same_as<
             typename A::value_type,
@@ -172,7 +225,7 @@ namespace numpp {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x - y; }, "sub");
     }
     
-    template<matrix_derived A, strided_matrix B>
+    template<numpp_matrix A, matrix_like B>
     requires (
         std::same_as<
             typename A::value_type,
@@ -184,7 +237,7 @@ namespace numpp {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x * y; }, "mul");
     }
     
-    template<matrix_derived A, strided_matrix B>
+    template<numpp_matrix A, matrix_like B>
     requires (
         std::same_as<
             typename A::value_type,
@@ -196,9 +249,9 @@ namespace numpp {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x / y; }, "div");
     }
     
-    template<strided_matrix A, matrix_derived B>
+    template<matrix_like A, numpp_matrix B>
     requires (
-        !matrix_derived<A> &&
+        !numpp_matrix<A> &&
         std::same_as<
             typename A::value_type,
             typename B::value_type
@@ -209,9 +262,9 @@ namespace numpp {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x + y; }, "add");
     }
 
-    template<strided_matrix A, matrix_derived B>
+    template<matrix_like A, numpp_matrix B>
     requires (
-        !matrix_derived<A> &&
+        !numpp_matrix<A> &&
         std::same_as<
             typename A::value_type,
             typename B::value_type
@@ -222,9 +275,9 @@ namespace numpp {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x - y; }, "sub");
     }
     
-    template<strided_matrix A, matrix_derived B>
+    template<matrix_like A, numpp_matrix B>
     requires (
-        !matrix_derived<A> &&
+        !numpp_matrix<A> &&
         std::same_as<
             typename A::value_type,
             typename B::value_type
@@ -235,9 +288,9 @@ namespace numpp {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x * y; }, "mul");
     }
     
-    template<strided_matrix A, matrix_derived B>
+    template<matrix_like A, numpp_matrix B>
     requires (
-        !matrix_derived<A> &&
+        !numpp_matrix<A> &&
         std::same_as<
             typename A::value_type,
             typename B::value_type
@@ -249,35 +302,31 @@ namespace numpp {
     }
 
     template<class Derived, typename T>
-    template<strided_matrix B>
-    requires (std::same_as<T, typename B::value_type> && can_add_assign<T>)
+    template<matrix_like B>
+    requires (std::same_as<typename matrix_base<Derived, T>::value_type, typename B::value_type> && can_add_assign<T>)
     matrix_base<Derived, T>& matrix_base<Derived, T>::operator+=(const B& b) {
-        detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x += y; }, "add-assign");
-        return *this;
+        return detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x += y; }, "add-assign");
     }
 
     template<class Derived, typename T>
-    template<strided_matrix B>
-    requires (std::same_as<T, typename B::value_type> && can_sub_assign<T>)
+    template<matrix_like B>
+    requires (std::same_as<typename matrix_base<Derived, T>::value_type, typename B::value_type> && can_sub_assign<T>)
     matrix_base<Derived, T>& matrix_base<Derived, T>::operator-=(const B& b) {
-        detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x -= y; }, "sub-assign");
-        return *this;
+        return detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x -= y; }, "sub-assign");
     }
 
     template<class Derived, typename T>
-    template<strided_matrix B>
-    requires (std::same_as<T, typename B::value_type> && can_mul_assign<T>)
+    template<matrix_like B>
+    requires (std::same_as<typename matrix_base<Derived, T>::value_type, typename B::value_type> && can_mul_assign<T>)
     matrix_base<Derived, T>& matrix_base<Derived, T>::operator*=(const B& b) {
-        detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x *= y; }, "mul-assign");
-        return *this;
+        return detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x *= y; }, "mul-assign");
     }
 
     template<class Derived, typename T>
-    template<strided_matrix B>
-    requires (std::same_as<T, typename B::value_type> && can_div_assign<T>)
+    template<matrix_like B>
+    requires (std::same_as<typename matrix_base<Derived, T>::value_type, typename B::value_type> && can_div_assign<T>)
     matrix_base<Derived, T>& matrix_base<Derived, T>::operator/=(const B& b) {
-        detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x /= y; }, "div-assign");
-        return *this;
+        return detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x /= y; }, "div-assign");
     }
 }
 

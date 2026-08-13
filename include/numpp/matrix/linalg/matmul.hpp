@@ -13,7 +13,7 @@ namespace numpp {
     namespace linalg {
         namespace detail {
             #if NUMPP_USE_BLAS
-            template<strided_matrix A, strided_matrix B>
+            template<matrix_like A, matrix_like B>
             auto matmul_blas_same_layout(const A& a, const B& b) {
                 using T = typename A::value_type;
                 matrix<T> out = matrix<T>::empty(a.row(), b.col());
@@ -74,7 +74,7 @@ namespace numpp {
                 return out;
             }
 
-            template<strided_matrix A, strided_matrix B>
+            template<matrix_like A, matrix_like B>
             auto matmul_blas_different_layout(const A& a, const B& b) {
                 using T = typename A::value_type;
                 matrix<T> out = matrix<T>::empty(a.row(), b.col());
@@ -368,7 +368,7 @@ namespace numpp {
             
             #endif
 
-            template<strided_matrix A, strided_matrix B>
+            template<matrix_like A, matrix_like B>
             auto matmul_native_contiguous_notrans_samelayout(const A& a, const B& b) {
                 using T = typename A::value_type;
                 matrix<T> out = matrix<T>::zeros(a.row(), b.col());
@@ -407,7 +407,7 @@ namespace numpp {
                 return out;
             }
 
-            template<strided_matrix A, strided_matrix B>
+            template<matrix_like A, matrix_like B>
             auto matmul_native_general(const A& a, const B& b) {
                 using T = typename A::value_type;
                 matrix<T> out = matrix<T>::empty(a.row(), b.col());
@@ -423,7 +423,7 @@ namespace numpp {
             }
         }
         
-        template<strided_matrix A, strided_matrix B>
+        template<matrix_like A, matrix_like B>
         requires (std::same_as<
             typename A::value_type,
             typename B::value_type> &&
@@ -474,7 +474,7 @@ namespace numpp {
         }
     }
 
-    template<strided_matrix A, strided_matrix B>
+    template<matrix_like A, matrix_like B>
     requires (std::same_as<
         typename A::value_type,
         typename B::value_type> &&

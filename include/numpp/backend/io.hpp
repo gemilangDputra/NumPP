@@ -83,7 +83,7 @@ namespace numpp {
             width + (index ? 1 : 0);
 
         if (need_newline(linewidth, current_width, extra)) {
-            os << '\n';
+            os << "\n  ";
             current_width = 1;
         }
 

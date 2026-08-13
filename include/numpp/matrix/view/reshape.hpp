@@ -8,7 +8,7 @@
 
 namespace numpp {
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix_view<T>::matrix_view(EXPR& other, size_t newrow, size_t newcol) {
         if (newrow * newcol != other.size())
             throw std::invalid_argument(
@@ -48,14 +48,34 @@ namespace numpp {
         return matrix_view<const T>(derived(), newrow, newcol);
     }
 
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     auto reshape(EXPR& mat, size_t newrow, size_t newcol) {
         return matrix_view<typename EXPR::value_type>(mat, newrow, newcol);
     }
 
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     auto reshape(const EXPR& mat, size_t newrow, size_t newcol) {
         return matrix_view<const typename EXPR::value_type>(mat, newrow, newcol);
+    }
+
+    template<typename T>
+    auto reshape(T* data, size_t row, size_t col, layout order=layout::rowmajor) {
+        return matrix_view<T>(data, row, col, order);
+    }
+    
+    template<typename T>
+    auto reshape(const T* data, size_t row, size_t col, layout order=layout::rowmajor) {
+        return matrix_view<const T>(data, row, col, order);
+    }
+
+    template<vector_1d_like VEC>
+    auto reshape(VEC& vec, size_t row, size_t col, layout order=layout::rowmajor) {
+        return matrix_view<typename VEC::value_type>(vec, row, col, order, "view");
+    }
+    
+    template<vector_1d_like VEC>
+    auto reshape(const VEC& vec, size_t row, size_t col, layout order=layout::rowmajor) {
+        return matrix_view<const typename VEC::value_type>(vec, row, col, order, "view");
     }
 }
 

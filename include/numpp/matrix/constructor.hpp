@@ -60,7 +60,7 @@ namespace numpp {
     }
 
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix<T> matrix<T>::empty_like(const EXPR& other) {
         matrix<T> out;
         out.row_ = other.row();
@@ -73,7 +73,7 @@ namespace numpp {
     }
 
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix<T> matrix<T>::zeros_like(const EXPR& other) {
         matrix<T> out;
         out.row_ = other.row();
@@ -86,7 +86,7 @@ namespace numpp {
     }
 
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix<T> matrix<T>::ones_like(const EXPR& other) {
         matrix<T> out;
         out.row_ = other.row();
@@ -100,7 +100,7 @@ namespace numpp {
     }
 
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix<T> matrix<T>::full_like(const EXPR& other, const T& value) {
         matrix<T> out;
         out.row_ = other.row();
@@ -190,7 +190,7 @@ namespace numpp {
     }
 
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix<T>::matrix(const EXPR& other) {
         this->row_ = other.row();
         this->col_ = other.col();
@@ -206,7 +206,7 @@ namespace numpp {
     }
 
     template<typename T>
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     matrix<T>& matrix<T>::operator=(const EXPR& other) {
         del();
         this->row_ = other.row();

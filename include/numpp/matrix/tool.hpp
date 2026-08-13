@@ -9,10 +9,7 @@
 
 namespace numpp {
     template<class EXPR>
-    concept is_matrix = requires(EXPR mat) { mat.col(); mat.row(); };
-
-    template<class EXPR>
-    concept strided_matrix =
+    concept matrix_like =
     requires(const EXPR& mat) {
         typename EXPR::value_type;
 
@@ -28,18 +25,18 @@ namespace numpp {
     };
 
     template<typename EXPR>
-    concept vector_1d =
-    requires(const EXPR& v, std::size_t i) {
+    concept vector_1d_like =
+    requires(const EXPR& vec) {
         typename EXPR::value_type;
+        { vec.size() } -> std::convertible_to<std::size_t>;
+        { vec.data() } -> std::convertible_to<const typename EXPR::value_type*>;
+    }
+    && !requires(const EXPR& vec) {
+        vec.row();
+        vec.col();
+    };
 
-        { v.size() } -> std::convertible_to<std::size_t>;
-        { v.data() } -> std::convertible_to<const typename EXPR::value_type*>;
-        { v[i] } -> std::convertible_to<typename EXPR::value_type>;
-        }
-        && (!requires(const EXPR& v) { v.row(); })
-        && (!requires(const EXPR& v) { v.col(); });
-
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     bool is_transpose(const EXPR& mat) {
         if (mat.order() == layout::rowmajor)
             return mat.rowstride() == 1 &&
@@ -49,7 +46,7 @@ namespace numpp {
                mat.colstride() == 1;
     }
     
-    template<strided_matrix EXPR>
+    template<matrix_like EXPR>
     bool is_contiguous(const EXPR& mat) {
         if (mat.offset() != 0)
             return false;
@@ -87,9 +84,9 @@ namespace numpp {
             { a *= b } -> std::same_as<T&>;
             { a /= b } -> std::same_as<T&>;
         };
-
-    template<class EXPR>
-    concept matrix_derived = std::derived_from<EXPR, matrix_base<EXPR, typename EXPR::value_type>>;
+    
+    template<class T>
+    concept numpp_matrix =std::derived_from< T,matrix_base<T, typename T::value_type>>;
 
     template<typename T>
     concept can_add =
