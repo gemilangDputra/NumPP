@@ -83,6 +83,12 @@ add_executable(TEST
     test/test.cpp
 )
 
+target_compile_options(TEST PRIVATE
+    -O3
+    -DNDEBUG
+    -march=native
+)
+
 target_link_libraries(TEST PRIVATE
     NUMPP
 )

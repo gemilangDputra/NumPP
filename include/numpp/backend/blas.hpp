@@ -86,19 +86,6 @@ namespace numpp::detail {
             c, ldc
         );
     }
-
-template<matrix_like M>
-int blas_leading_dimension(
-    const M& mat,
-    CBLAS_ORDER,
-    CBLAS_TRANSPOSE trans)
-{
-    return static_cast<int>(
-        trans == CblasNoTrans
-            ? mat.rowstride()
-            : mat.colstride()
-    );
-}
 }
 #endif
 

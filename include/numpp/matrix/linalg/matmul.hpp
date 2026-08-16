@@ -14,381 +14,115 @@ namespace numpp {
         namespace detail {
             #if NUMPP_USE_BLAS
             template<matrix_like A, matrix_like B>
-            auto matmul_blas_same_layout(const A& a, const B& b) {
+            auto matmul_blas_same_strides(const A& a, const B& b) {
                 using T = typename A::value_type;
                 matrix<T> out = matrix<T>::empty(a.row(), b.col());
-
-                const bool trans_a = is_transpose(a);
-                const bool trans_b = is_transpose(b);
-
-                if (a.order() == layout::rowmajor) {
-                    ::numpp::detail::blas_gemm<T>(
-                        CblasRowMajor,
-                        trans_a ? CblasTrans : CblasNoTrans,
-                        trans_b ? CblasTrans : CblasNoTrans,
-
-                        static_cast<int>(a.row()),
-                        static_cast<int>(b.col()),
-                        static_cast<int>(a.col()),
-
-                        T{1},
-
-                        a.data(),
-                        ::numpp::detail::blas_leading_dimension(a, CblasRowMajor, trans_a ? CblasTrans : CblasNoTrans),
-                        b.data(),
-
-                        ::numpp::detail::blas_leading_dimension(b, CblasRowMajor, trans_b ? CblasTrans : CblasNoTrans),
-                        T{0},
-                        out.data(),
-                        static_cast<int>(out.rowstride())
-                    );
-                } else {
-                    const auto trans_bt = trans_b ? CblasNoTrans : CblasTrans;
-                    const auto trans_at = trans_a ? CblasNoTrans : CblasTrans;
-
-                    ::numpp::detail::blas_gemm<T>(
-                        CblasColMajor,
-
-                        trans_bt,
-                        trans_at,
-
-                        static_cast<int>(b.col()),
-                        static_cast<int>(a.row()),
-                        static_cast<int>(a.col()),
-
-                        T{1},
-
-                        b.data(),
-                        ::numpp::detail::blas_leading_dimension(b, CblasColMajor, trans_bt),
-
-                        a.data(),
-                        ::numpp::detail::blas_leading_dimension(a, CblasColMajor, trans_at),
-
-                        T{0},
-
-                        out.data(),
-                        static_cast<int>(out.rowstride())
-                    );
-                }
-
-                return out;
-            }
-
-            template<matrix_like A, matrix_like B>
-            auto matmul_blas_different_layout(const A& a, const B& b) {
-                using T = typename A::value_type;
-                matrix<T> out = matrix<T>::empty(a.row(), b.col());
-
-                const bool trans_a = is_transpose(a);
-                const bool trans_b = is_transpose(b);
-
+                
                 const int M = static_cast<int>(a.row());
                 const int N = static_cast<int>(b.col());
                 const int K = static_cast<int>(a.col());
 
-                if (a.order() == layout::rowmajor) {
-                    if (!trans_a && !trans_b) {
+                if (a.rowstride() == a.col() &&
+                    a.colstride() == 1) {
+                    ::numpp::detail::blas_gemm<T>(
+                        CblasRowMajor,
+                        CblasNoTrans,
+                        CblasNoTrans,
+                        M, N, K,
+                        T{1},
+                        a.data() + a.offset(),
+                        static_cast<int>(a.rowstride()),
+                        b.data() + b.offset(),
+                        static_cast<int>(b.rowstride()),
+                        T{0},
+                        out.data(),
+                        static_cast<int>(out.rowstride())
+                    );
 
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasRowMajor,
-
-                            CblasNoTrans,
-                            CblasTrans,
-
-                            M,
-                            N,
-                            K,
-
-                            T{1},
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasRowMajor,
-                                CblasNoTrans
-                            ),
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasRowMajor,
-                                CblasTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
-
-                    else if (!trans_a && trans_b) {
-
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasRowMajor,
-
-                            CblasNoTrans,
-                            CblasNoTrans,
-
-                            M,
-                            N,
-                            K,
-
-                            T{1},
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasRowMajor,
-                                CblasNoTrans
-                            ),
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasRowMajor,
-                                CblasNoTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
-
-                    else if (trans_a && !trans_b) {
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasRowMajor,
-
-                            CblasTrans,
-                            CblasTrans,
-
-                            M,
-                            N,
-                            K,
-
-                            T{1},
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasRowMajor,
-                                CblasTrans
-                            ),
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasRowMajor,
-                                CblasTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
-
-                    else {
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasRowMajor,
-
-                            CblasTrans,
-                            CblasNoTrans,
-
-                            M,
-                            N,
-                            K,
-
-                            T{1},
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasRowMajor,
-                                CblasTrans
-                            ),
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasRowMajor,
-                                CblasNoTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
+                } else {
+                    ::numpp::detail::blas_gemm<T>(
+                        CblasColMajor,
+                        CblasTrans,
+                        CblasTrans,
+                        N, M, K,
+                        T{1},
+                        b.data() + b.offset(),
+                        static_cast<int>(b.colstride()),
+                        a.data() + a.offset(),
+                        static_cast<int>(a.colstride()),
+                        T{0},
+                        out.data(),
+                        static_cast<int>(out.rowstride())
+                    );
                 }
-
-                else {
-                    if (!trans_a && !trans_b) {
-
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasColMajor,
-
-                            CblasNoTrans,
-                            CblasTrans,
-
-                            N,
-                            M,
-                            K,
-
-                            T{1},
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasColMajor,
-                                CblasNoTrans
-                            ),
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasColMajor,
-                                CblasTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
-                    else if (!trans_a && trans_b) {
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasColMajor,
-
-                            CblasTrans,
-                            CblasTrans,
-
-                            N,
-                            M,
-                            K,
-
-                            T{1},
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasColMajor,
-                                CblasTrans
-                            ),
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasColMajor,
-                                CblasTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
-                    else if (trans_a && !trans_b) {
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasColMajor,
-
-                            CblasNoTrans,
-                            CblasNoTrans,
-
-                            N,
-                            M,
-                            K,
-
-                            T{1},
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasColMajor,
-                                CblasNoTrans
-                            ),
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasColMajor,
-                                CblasNoTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
-
-                    else {
-                        ::numpp::detail::blas_gemm<T>(
-                            CblasColMajor,
-
-                            CblasTrans,
-                            CblasNoTrans,
-
-                            N,
-                            M,
-                            K,
-
-                            T{1},
-
-                            b.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                b,
-                                CblasColMajor,
-                                CblasTrans
-                            ),
-
-                            a.data(),
-                            ::numpp::detail::blas_leading_dimension(
-                                a,
-                                CblasColMajor,
-                                CblasNoTrans
-                            ),
-
-                            T{0},
-
-                            out.data(),
-                            static_cast<int>(out.rowstride())
-                        );
-                    }
-                }
-
                 return out;
             }
-            
+
+template<matrix_like A, matrix_like B>
+auto matmul_blas_different_strides(const A& a, const B& b) {
+    using T = typename A::value_type;
+    matrix<T> out = matrix<T>::empty(a.row(), b.col());
+
+    const int M = static_cast<int>(a.row());
+    const int N = static_cast<int>(b.col());
+    const int K = static_cast<int>(a.col());
+
+    if (a.rowstride() == a.col() && a.colstride() == 1) {
+        ::numpp::detail::blas_gemm<T>(
+            CblasRowMajor,
+            CblasNoTrans,
+            CblasTrans,
+            M, N, K,
+            T{1},
+            a.data() + a.offset(),
+            static_cast<int>(a.rowstride()),
+            b.data() + b.offset(),
+            static_cast<int>(b.colstride()),
+            T{0},
+            out.data(),
+            static_cast<int>(out.rowstride())
+        );
+    }
+    else {
+        ::numpp::detail::blas_gemm<T>(
+        CblasColMajor,
+        CblasNoTrans,
+        CblasTrans,
+        N, M, K,
+        T{1},
+        b.data() + b.offset(),
+        static_cast<int>(b.rowstride()),
+        a.data() + a.offset(),
+        static_cast<int>(a.colstride()),
+        T{0},
+        out.data(),
+        static_cast<int>(out.rowstride())
+        );
+    }
+    return out;
+}
+
             #endif
 
             template<matrix_like A, matrix_like B>
-            auto matmul_native_contiguous_notrans_samelayout(const A& a, const B& b) {
+            auto matmul_native_contiguous_same_strides(const A& a, const B& b) {
                 using T = typename A::value_type;
                 matrix<T> out = matrix<T>::zeros(a.row(), b.col());
 
-                const T* adata = a.data();
-                const T* bdata = b.data();
+                const T* adata = a.data()+a.offset();
+                const T* bdata = b.data()+b.offset();
                 T* cdata = out.data();
 
                 const size_t M = a.row();
                 const size_t N = b.col();
                 const size_t K = a.col();
 
-                if (a.order() == layout::rowmajor) {
+                if (a.rowstride() == a.col() && a.colstride() == 1) {
                     for (size_t i = 0; i < M; ++i) {
                         for (size_t k = 0; k < K; ++k) {
                             const T aik = adata[i * K + k];
-
                             for (size_t j = 0; j < N; ++j)
-                                cdata[i * N + j] +=
-                                    aik * bdata[k * N + j];
+                                cdata[i * N + j] += aik * bdata[k * N + j];
                         }
                     }
                 }
@@ -396,14 +130,11 @@ namespace numpp {
                     for (size_t j = 0; j < N; ++j) {
                         for (size_t k = 0; k < K; ++k) {
                             const T bkj = bdata[k + j * K];
-
                             for (size_t i = 0; i < M; ++i)
-                                cdata[i * N + j] +=
-                                    adata[i + k * M] * bkj;
+                                cdata[i * N + j] += adata[i + k * M] * bkj;
                         }
                     }
                 }
-
                 return out;
             }
 
@@ -451,29 +182,37 @@ namespace numpp {
             const size_t N = b.col();
             const size_t K = a.col();
 
+            const size_t work = M * N * K;
+
             if (is_contiguous(a) && is_contiguous(b)) {
                 #if NUMPP_USE_BLAS
                 if constexpr (std::same_as<T, float> || std::same_as<T, double>) {
-                    const size_t work = M * N * K;
-
-                    if (work > 5'250'000) {
-                        if (a.order() == b.order())
-                            return detail::matmul_blas_same_layout(a, b);
+                    if (work > 125'000'000ULL/(8*sizeof(T))) {
+                        if (a.rowstride() == b.rowstride() || a.colstride() == b.colstride())
+                            return detail::matmul_blas_same_strides(a,b);
                         else
-                            return detail::matmul_blas_different_layout(a, b);
+                            return detail::matmul_blas_different_strides(a,b);
                     }
                 }
                 #endif
-
-                if (a.order() == b.order() && !is_transpose(a) && !is_transpose(b)) {
-                    return detail::matmul_native_contiguous_notrans_samelayout(a, b);
+                if (a.rowstride() == b.rowstride() && a.colstride() == b.colstride()) {
+                    return detail::matmul_native_contiguous_same_strides(a, b);
                 }
             }
 
+            if (work > 12'500'000ULL) {
+                if (!is_contiguous(a) && !is_contiguous(b)) {
+                    return ::numpp::linalg::matmul(matrix<T>(a), matrix<T>(b));
+                } else if (!is_contiguous(a)) {
+                    return ::numpp::linalg::matmul(matrix<T>(a), b);
+                } else {
+                    return ::numpp::linalg::matmul(a, matrix<T>(b));
+                }
+            }
             return detail::matmul_native_general(a, b);
         }
     }
-
+    
     template<matrix_like A, matrix_like B>
     requires (std::same_as<
         typename A::value_type,
