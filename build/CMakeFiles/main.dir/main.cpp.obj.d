@@ -135,11 +135,6 @@ CMakeFiles/main.dir/main.cpp.obj: D:\Developers\coding-lab\numpp\main.cpp \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/pstl/glue_algorithm_defs.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/pstl/execution_defs.h \
  D:/Developers/coding-lab/numpp/include/numpp/matrix/arithmetic.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/broadcast.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/view.hpp \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/utility \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/stl_relops.h \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/intcmp.h \
  D:/Developers/coding-lab/numpp/include/numpp/matrix/linalg/matmul.hpp \
  D:/Developers/coding-lab/numpp/include/numpp/backend/blas.hpp \
  D:/Developers/apps/msys2/ucrt64/include/openblas/cblas.h \
@@ -148,10 +143,21 @@ CMakeFiles/main.dir/main.cpp.obj: D:\Developers\coding-lab\numpp\main.cpp \
  D:/Developers/apps/msys2/ucrt64/include/stdint.h \
  D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/float.h \
  D:/Developers/apps/msys2/ucrt64/include/float.h \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/iostream \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/ostream \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ostream.h \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/ios \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/broadcast.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/view.hpp \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/utility \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/stl_relops.h \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/intcmp.h \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/comparison.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_comparison.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/transpose.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/slice.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/reshape.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/io.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/backend/io.hpp \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/iomanip \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ios_base.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/ext/atomicity.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/gthr.h \
@@ -176,29 +182,16 @@ CMakeFiles/main.dir/main.cpp.obj: D:\Developers\coding-lab\numpp\main.cpp \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/locale_classes.tcc \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/system_error \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/error_constants.h \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/streambuf \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/streambuf.tcc \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/basic_ios.h \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/locale \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/locale_facets.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/cwctype \
  D:/Developers/apps/msys2/ucrt64/include/wctype.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_base.h \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/streambuf \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/streambuf.tcc \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/streambuf_iterator.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_inline.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/locale_facets.tcc \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ostream_print.h \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ostream.tcc \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/istream \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/istream.tcc \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/transpose.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/slice.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/reshape.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/io.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/backend/io.hpp \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/iomanip \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/locale \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/locale_facets_nonio.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/ctime \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/time_members.h \
@@ -208,7 +201,17 @@ CMakeFiles/main.dir/main.cpp.obj: D:\Developers\coding-lab\numpp\main.cpp \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/locale_conv.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/quoted_string.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/sstream \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/istream \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/ios \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/basic_ios.h \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/ostream \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ostream.h \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ostream_print.h \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ostream.tcc \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/istream.tcc \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/sstream.tcc \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/iostream \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/memory \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/stl_uninitialized.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h \

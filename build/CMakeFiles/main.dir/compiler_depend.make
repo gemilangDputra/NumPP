@@ -465,13 +465,16 @@ CMakeFiles/main.dir/main.cpp.obj: D:/Developers/coding-lab/numpp/main.cpp \
   D:/Developers/coding-lab/numpp/include/numpp/backend/io.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/arithmetic.hpp \
+  D:/Developers/coding-lab/numpp/include/numpp/matrix/comparison.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/constructor.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/core.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/forward.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/io.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/linalg/matmul.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/matrix.hpp \
+  D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp \
+  D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_comparison.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/tool.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/view/broadcast.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/view/reshape.hpp \
@@ -493,6 +496,8 @@ D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp:
 D:/Developers/coding-lab/numpp/include/numpp/matrix/io.hpp:
 
 D:/Developers/coding-lab/numpp/include/numpp/matrix/core.hpp:
+
+D:/Developers/coding-lab/numpp/include/numpp/matrix/comparison.hpp:
 
 D:/Developers/coding-lab/numpp/include/numpp/matrix/arithmetic.hpp:
 
@@ -549,6 +554,8 @@ D:/Developers/apps/msys2/ucrt64/include/locale.h:
 D:/Developers/apps/msys2/ucrt64/include/limits.h:
 
 D:/Developers/apps/msys2/ucrt64/include/errno.h:
+
+D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp:
 
 D:/Developers/apps/msys2/ucrt64/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.inc:
 
@@ -981,6 +988,8 @@ D:/Developers/apps/msys2/ucrt64/include/eigen3/Eigen/src/Core/CoreIterators.h:
 D:/Developers/apps/msys2/ucrt64/include/eigen3/Eigen/src/Core/Product.h:
 
 D:/Developers/apps/msys2/ucrt64/include/_mingw_secapi.h:
+
+D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_comparison.hpp:
 
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/tr1/special_function_util.h:
 

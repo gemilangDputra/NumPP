@@ -466,13 +466,16 @@ CMakeFiles/main.dir/main.cpp.obj
  D:/Developers/coding-lab/numpp/include/numpp/backend/io.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/arithmetic.hpp
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/comparison.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/constructor.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/core.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/forward.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/io.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/linalg/matmul.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/matrix.hpp
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_comparison.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/tool.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/view/broadcast.hpp
  D:/Developers/coding-lab/numpp/include/numpp/matrix/view/reshape.hpp
