@@ -1,10 +1,12 @@
 #ifndef NUMPP_BACKEND_BLAS_HPP
 #define NUMPP_BACKEND_BLAS_HPP
 
-#include <numpp/numpp_blas_config.hpp>
-
 #if NUMPP_USE_BLAS
-#include NUMPP_BLAS_HEADER
+#ifdef NUMPP_BLAS_HEADR
+    #include NUMPP_BLAS_HEADER
+#else
+    #include <cblas.h>
+#endif
 
 #include <numpp/matrix/tool.hpp>
 

@@ -17,4 +17,10 @@
 #include <numpp/matrix/io.hpp>
 #include <numpp/matrix/tool.hpp>
 
+namespace numpp {
+    using matrixf = matrix<float>;
+    using matrixd = matrix<double>;
+    using matrixi = matrix<int>;
+}
+
 #endif //NUMPP_MATRIX_HPP

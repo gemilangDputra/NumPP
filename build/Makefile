@@ -116,41 +116,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named TEST
+# Target rules for targets named main
 
 # Build rule for target.
-TEST: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TEST
-.PHONY : TEST
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-TEST/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEST.dir\build.make CMakeFiles/TEST.dir/build
-.PHONY : TEST/fast
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
-test/test.obj: test/test.cpp.obj
-.PHONY : test/test.obj
+main.obj: main.cpp.obj
+.PHONY : main.obj
 
 # target to build an object file
-test/test.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEST.dir\build.make CMakeFiles/TEST.dir/test/test.cpp.obj
-.PHONY : test/test.cpp.obj
+main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/main.cpp.obj
+.PHONY : main.cpp.obj
 
-test/test.i: test/test.cpp.i
-.PHONY : test/test.i
+main.i: main.cpp.i
+.PHONY : main.i
 
 # target to preprocess a source file
-test/test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEST.dir\build.make CMakeFiles/TEST.dir/test/test.cpp.i
-.PHONY : test/test.cpp.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-test/test.s: test/test.cpp.s
-.PHONY : test/test.s
+main.s: main.cpp.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-test/test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEST.dir\build.make CMakeFiles/TEST.dir/test/test.cpp.s
-.PHONY : test/test.cpp.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -160,10 +160,10 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... TEST
-	@echo ... test/test.obj
-	@echo ... test/test.i
-	@echo ... test/test.s
+	@echo ... main
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 

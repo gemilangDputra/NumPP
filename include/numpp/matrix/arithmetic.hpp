@@ -5,10 +5,12 @@
 #include <numpp/matrix/tool.hpp>
 #include <numpp/matrix/matrix.hpp>
 #include <numpp/matrix/view/broadcast.hpp>
+#include <numpp/matrix/linalg/matmul.hpp>
 #include <utility>
 #include <string>
 #include <string_view>
 #include <iostream>
+
 namespace numpp {
     namespace detail {
         template<matrix_like A, matrix_like B, typename Op>
@@ -233,8 +235,20 @@ namespace numpp {
         > &&
         can_mul<typename A::value_type>
     )
-    matrix<typename A::value_type> operator*(const A& a, const B& b) {
+    matrix<typename A::value_type> elementwise_mul(const A& a, const B& b) {
         return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x * y; }, "mul");
+    }
+    
+    template<numpp_matrix A, matrix_like B>
+    requires (
+        std::same_as<
+            typename A::value_type,
+            typename B::value_type
+        > &&
+        is_numeric<typename A::value_type>
+    )
+    matrix<typename A::value_type> operator*(const A& a, const B& b) {
+        return linalg::matmul(a,b);
     }
     
     template<numpp_matrix A, matrix_like B>
@@ -282,10 +296,10 @@ namespace numpp {
             typename A::value_type,
             typename B::value_type
         > &&
-        can_mul<typename A::value_type>
+        is_numeric<typename A::value_type>
     )
     matrix<typename A::value_type> operator*(const A& a, const B& b) {
-        return detail::matrix_op_expr(a,b,[](auto x, auto y) { return x * y; }, "mul");
+        return linalg::matmul(a,b);
     }
     
     template<matrix_like A, numpp_matrix B>
@@ -317,9 +331,17 @@ namespace numpp {
 
     template<class Derived, typename T>
     template<matrix_like B>
-    requires (std::same_as<typename matrix_base<Derived, T>::value_type, typename B::value_type> && can_mul_assign<T>)
+    requires (
+        std::same_as<
+            typename matrix_base<Derived, T>::value_type,
+            typename B::value_type
+        >
+        && can_mul_assign<T>
+    )
     matrix_base<Derived, T>& matrix_base<Derived, T>::operator*=(const B& b) {
-        return detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x *= y; }, "mul-assign");
+        Derived& self = derived();
+        self = linalg::matmul(self, b);
+        return *this;
     }
 
     template<class Derived, typename T>

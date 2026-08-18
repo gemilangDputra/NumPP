@@ -4,9 +4,7 @@
 #include <numpp/matrix/tool.hpp>
 #include <numpp/matrix/matrix.hpp>
 #include <numpp/matrix/core.hpp>
-
 #include <numpp/backend/blas.hpp>
-#include <type_traits>
 #include <string>
 
 namespace numpp {
@@ -58,49 +56,49 @@ namespace numpp {
                 return out;
             }
 
-template<matrix_like A, matrix_like B>
-auto matmul_blas_different_strides(const A& a, const B& b) {
-    using T = typename A::value_type;
-    matrix<T> out = matrix<T>::empty(a.row(), b.col());
+            template<matrix_like A, matrix_like B>
+            auto matmul_blas_different_strides(const A& a, const B& b) {
+                using T = typename A::value_type;
+                matrix<T> out = matrix<T>::empty(a.row(), b.col());
 
-    const int M = static_cast<int>(a.row());
-    const int N = static_cast<int>(b.col());
-    const int K = static_cast<int>(a.col());
+                const int M = static_cast<int>(a.row());
+                const int N = static_cast<int>(b.col());
+                const int K = static_cast<int>(a.col());
 
-    if (a.rowstride() == a.col() && a.colstride() == 1) {
-        ::numpp::detail::blas_gemm<T>(
-            CblasRowMajor,
-            CblasNoTrans,
-            CblasTrans,
-            M, N, K,
-            T{1},
-            a.data() + a.offset(),
-            static_cast<int>(a.rowstride()),
-            b.data() + b.offset(),
-            static_cast<int>(b.colstride()),
-            T{0},
-            out.data(),
-            static_cast<int>(out.rowstride())
-        );
-    }
-    else {
-        ::numpp::detail::blas_gemm<T>(
-        CblasColMajor,
-        CblasNoTrans,
-        CblasTrans,
-        N, M, K,
-        T{1},
-        b.data() + b.offset(),
-        static_cast<int>(b.rowstride()),
-        a.data() + a.offset(),
-        static_cast<int>(a.colstride()),
-        T{0},
-        out.data(),
-        static_cast<int>(out.rowstride())
-        );
-    }
-    return out;
-}
+                if (a.rowstride() == a.col() && a.colstride() == 1) {
+                    ::numpp::detail::blas_gemm<T>(
+                        CblasRowMajor,
+                        CblasNoTrans,
+                        CblasTrans,
+                        M, N, K,
+                        T{1},
+                        a.data() + a.offset(),
+                        static_cast<int>(a.rowstride()),
+                        b.data() + b.offset(),
+                        static_cast<int>(b.colstride()),
+                        T{0},
+                        out.data(),
+                        static_cast<int>(out.rowstride())
+                    );
+                }
+                else {
+                    ::numpp::detail::blas_gemm<T>(
+                    CblasColMajor,
+                    CblasNoTrans,
+                    CblasTrans,
+                    N, M, K,
+                    T{1},
+                    b.data() + b.offset(),
+                    static_cast<int>(b.rowstride()),
+                    a.data() + a.offset(),
+                    static_cast<int>(a.colstride()),
+                    T{0},
+                    out.data(),
+                    static_cast<int>(out.rowstride())
+                    );
+                }
+                return out;
+            }
 
             #endif
 
@@ -164,7 +162,7 @@ auto matmul_blas_different_strides(const A& a, const B& b) {
             using T = typename A::value_type;
             if (a.col() != b.row())
                 throw std::invalid_argument(
-                    "numpp::operation<matmul> error: "
+                    "numpp::operation<matmul/operator*> error: "
                     "cannot multiply " +
                     std::to_string(a.row()) + "x" +
                     std::to_string(a.col()) +

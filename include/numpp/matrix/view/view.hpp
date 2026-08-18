@@ -26,17 +26,22 @@ namespace numpp {
             }
 
             template<matrix_like EXPR>
-            matrix_view& operator=(EXPR& other) {
-                this->init_metadata(
-                    other.data(),
-                    other.size(),
-                    other.row(),
-                    other.col(),
-                    other.rowstride(),
-                    other.colstride(),
-                    other.order(),
-                    other.offset()
-                );
+            matrix_view& operator=(const EXPR& other) {
+                if (this->row_ != other.row() || this->col_ != other.col()) {
+                    throw std::invalid_argument(
+                        "numpp::matrix_view::operator=: "
+                        "shape mismatch: destination is " +
+                        std::to_string(this->row_) + "x" +
+                        std::to_string(this->col_) +
+                        ", source is " +
+                        std::to_string(other.row()) + "x" +
+                        std::to_string(other.col())
+                    );
+                }
+
+                for (size_t i = 0; i < this->row_; ++i)
+                    for (size_t j = 0; j < this->col_; ++j)
+                        (*this)(i, j) = other(i, j);
 
                 return *this;
             }
@@ -122,6 +127,21 @@ namespace numpp {
                 }
                 return out;
             }
+            
+            template<matrix_like EXPR>
+            void rebind(EXPR& other) {
+                this->init_metadata(
+                    other.data(),
+                    other.size(),
+                    other.row(),
+                    other.col(),
+                    other.rowstride(),
+                    other.colstride(),
+                    other.order(),
+                    other.offset()
+                );
+            }
+            
     };
 
     template<class Derived, typename T>

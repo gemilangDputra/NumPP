@@ -1,7 +1,0 @@
-#pragma once
-
-#define NUMPP_USE_BLAS @NUMPP_USE_BLAS@
-
-#if NUMPP_USE_BLAS
-#define NUMPP_BLAS_HEADER @NUMPP_BLAS_HEADER@
-#endif

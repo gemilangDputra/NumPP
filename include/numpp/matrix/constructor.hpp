@@ -133,6 +133,26 @@ namespace numpp {
         for (int i = begin; i < end; ++i) out(i, i + k) = T{1};
         return out;
     }
+    
+    template<typename T>
+    matrix<T> matrix<T>::identity(size_t row, size_t col, int k, layout order) {
+        matrix<T> out;
+        out.row_ = row;
+        out.col_ = col;
+
+        out.compute_stride(order);
+        out.size_ = row*col;
+        out.alloc(true);
+
+        const int rows = static_cast<int>(row);
+        const int cols = static_cast<int>(col);
+
+        const int begin = std::max(0, -k);
+        const int end   = std::min(rows, cols - k);
+
+        for (int i = begin; i < end; ++i) out(i, i + k) = T{1};
+        return out;
+    }
 
     template<typename T>
     matrix<T> matrix<T>::diag(std::initializer_list<T> list, int k, layout order) {
