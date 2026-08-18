@@ -3,6 +3,7 @@
 
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
+#include <cstddef>
 
 namespace numpp {
     template<typename T>
@@ -43,6 +44,13 @@ namespace numpp {
             static matrix zeros(size_t row, size_t col, layout order=layout::rowmajor);
             static matrix ones(size_t row, size_t col, layout order=layout::rowmajor);
             static matrix full(size_t row, size_t col, const T& value, layout order=layout::rowmajor);
+
+            static matrix rand(size_t row, size_t col, const T& min, const T& max, layout order=layout::rowmajor);
+            template<RandomEngine RNG>
+            static matrix rand(size_t row, size_t col, const T& min, const T& max, layout order, RNG& rng);
+            static matrix randint(size_t row, size_t col, int64_t min, int64_t max, layout order=layout::rowmajor);
+            template<RandomEngine RNG>
+            static matrix randint(size_t row, size_t col, int64_t min, int64_t max, layout order, RNG& rng);
 
             template<matrix_like EXPR>
             static matrix<T> empty_like(const EXPR& other);

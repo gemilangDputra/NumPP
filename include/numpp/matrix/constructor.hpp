@@ -7,6 +7,7 @@
 
 #include <algorithm>
 #include <stdexcept>
+#include <random>
 
 namespace numpp {
     template<typename T>
@@ -56,6 +57,70 @@ namespace numpp {
         out.size_ = row*col;
         out.alloc();
         for (size_t i=0; i < out.size(); ++i) out.data()[i] = value;
+        return out;
+    }
+    
+    template<typename T>
+    matrix<T> matrix<T>::rand(size_t row, size_t col, const T& min, const T& max, layout order) {
+        matrix<T> out;
+        out.row_ = row;
+        out.col_ = col;
+
+        out.compute_stride(order);
+        out.size_ = row * col;
+        out.alloc();
+
+        std::mt19937 gen(std::random_device{}());
+        std::uniform_real_distribution<T> dist(min, max);
+        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = dist(gen);
+        return out;
+    }
+
+    template<typename T>
+    template<RandomEngine RNG>
+    matrix<T> matrix<T>::rand(size_t row, size_t col, const T& min, const T& max, layout order, RNG& rng) {
+        matrix<T> out;
+        out.row_ = row;
+        out.col_ = col;
+
+        out.compute_stride(order);
+        out.size_ = row * col;
+        out.alloc();
+
+        std::uniform_real_distribution<T> dist(min, max);
+        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = dist(rng);
+        return out;
+    }
+
+    template<typename T>
+    matrix<T> matrix<T>::randint(size_t row, size_t col, int64_t min, int64_t max, layout order) {
+        matrix<T> out;
+        out.row_ = row;
+        out.col_ = col;
+
+        out.compute_stride(order);
+        out.size_ = row * col;
+        out.alloc();
+
+        std::mt19937 gen(std::random_device{}());
+        std::uniform_int_distribution<int64_t> dist(min, max);
+        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = static_cast<T>(dist(gen));
+        return out;
+    }
+
+    template<typename T>
+    template<RandomEngine RNG>
+    matrix<T> matrix<T>::randint(size_t row, size_t col, int64_t min, int64_t max, layout order, RNG& rng) {
+        matrix<T> out;
+        out.row_ = row;
+        out.col_ = col;
+
+        out.compute_stride(order);
+        out.size_ = row * col;
+        out.alloc();
+
+        std::uniform_int_distribution<std::int64_t> dist(min, max);
+        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = static_cast<T>(dist(rng));
         return out;
     }
 

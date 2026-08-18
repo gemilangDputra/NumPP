@@ -4,10 +4,14 @@
 #include <concepts>
 #include <type_traits>
 #include <stdexcept>
+#include <random>
 
 #include <numpp/matrix/forward.hpp>
 
 namespace numpp {
+    template<typename RNG>
+    concept RandomEngine = std::uniform_random_bit_generator<RNG>;
+
     template<class EXPR>
     concept matrix_like =
     requires(const EXPR& mat) {

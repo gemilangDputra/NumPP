@@ -10339,3 +10339,743 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:333 (try_compile)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:659 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    description: "Detecting Fortran OpenMP compiler info"
+    directories:
+      source: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-urjy4x"
+      binary: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-urjy4x"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_Fortran_FLAGS: ""
+      CMAKE_Fortran_FLAGS_DEBUG: "-g"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_FortranHeader_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-urjy4x'
+        
+        Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_99c08/fast
+        D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_99c08.dir\\build.make CMakeFiles/cmTC_99c08.dir/build
+        mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-urjy4x'
+        Building Fortran object CMakeFiles/cmTC_99c08.dir/OpenMPTryFlag.F90.obj
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-urjy4x\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_99c08.dir\\OpenMPTryFlag.F90.obj
+        Linking Fortran executable cmTC_99c08.exe
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_99c08.dir\\link.txt --verbose=1
+        Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_99c08.dir/objects.a -Wl,--no-whole-archive -o cmTC_99c08.exe -Wl,--out-implib,libcmTC_99c08.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -l gfortran -shared-libgcc
+        Using built-in specs.
+        COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe
+        COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 16.1.0 (Rev5, Built by MSYS2 project) 
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec
+        rename spec lib to liborig
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_99c08.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_99c08-'
+        COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_99c08.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_99c08.'
+         D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccKmHszq.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_99c08.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_99c08.dir/objects.a --no-whole-archive --out-implib libcmTC_99c08.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_99c08.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_99c08.'
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_99c08.dir/objects.a
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_99c08.dir/objects.a @CMakeFiles\\cmTC_99c08.dir\\objects1.rsp
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe  -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_99c08.dir/objects.a -Wl,--no-whole-archive -o cmTC_99c08.exe -Wl,--out-implib,libcmTC_99c08.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-urjy4x'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:377 (message)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:659 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    message: |
+      Parsed Fortran OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-urjy4x']
+        ignore line: []
+        ignore line: [Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_99c08/fast]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_99c08.dir\\build.make CMakeFiles/cmTC_99c08.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-urjy4x']
+        ignore line: [Building Fortran object CMakeFiles/cmTC_99c08.dir/OpenMPTryFlag.F90.obj]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-urjy4x\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_99c08.dir\\OpenMPTryFlag.F90.obj]
+        ignore line: [Linking Fortran executable cmTC_99c08.exe]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_99c08.dir\\link.txt --verbose=1]
+        ignore line: [Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl --whole-archive CMakeFiles\\cmTC_99c08.dir/objects.a -Wl --no-whole-archive -o cmTC_99c08.exe -Wl --out-implib libcmTC_99c08.dll.a -Wl --major-image-version 0 --minor-image-version 0 -l gfortran -shared-libgcc]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe]
+        ignore line: [COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 16.1.0 (Rev5  Built by MSYS2 project) ]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec]
+        ignore line: [rename spec lib to liborig]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_99c08.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_99c08-']
+        ignore line: [COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_99c08.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_99c08.']
+        link line: [ D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccKmHszq.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_99c08.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_99c08.dir/objects.a --no-whole-archive --out-implib libcmTC_99c08.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o]
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccKmHszq.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lquadmath] ==> ignore
+          arg [-plugin-opt=-pass-through=-lm] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_99c08.exe] ==> ignore
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..]
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles\\cmTC_99c08.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_99c08.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lgfortran] ==> lib [gfortran]
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lquadmath] ==> lib [quadmath]
+          arg [-lm] ==> lib [m]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        implicit libs: [gfortran;gomp;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32;quadmath;m;pthread;advapi32;shell32;user32;kernel32;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32]
+        implicit objs: []
+        implicit dirs: [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0;D:/Developers/apps/msys2/ucrt64/lib/gcc;D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib;D:/Developers/apps/msys2/ucrt64/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:333 (try_compile)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:679 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    description: "Detecting Fortran OpenMP compiler info"
+    directories:
+      source: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-g4p077"
+      binary: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-g4p077"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_Fortran_FLAGS: ""
+      CMAKE_Fortran_FLAGS_DEBUG: "-g"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_FortranModule_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-g4p077'
+        
+        Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_463f0/fast
+        D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_463f0.dir\\build.make CMakeFiles/cmTC_463f0.dir/build
+        mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-g4p077'
+        Building Fortran object CMakeFiles/cmTC_463f0.dir/OpenMPTryFlag.F90.obj
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g4p077\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_463f0.dir\\OpenMPTryFlag.F90.obj
+        Linking Fortran executable cmTC_463f0.exe
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_463f0.dir\\link.txt --verbose=1
+        Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_463f0.dir/objects.a -Wl,--no-whole-archive -o cmTC_463f0.exe -Wl,--out-implib,libcmTC_463f0.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -l gfortran -shared-libgcc
+        Using built-in specs.
+        COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe
+        COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 16.1.0 (Rev5, Built by MSYS2 project) 
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec
+        rename spec lib to liborig
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_463f0.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_463f0-'
+        COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_463f0.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_463f0.'
+         D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\cc4fNi73.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_463f0.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_463f0.dir/objects.a --no-whole-archive --out-implib libcmTC_463f0.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_463f0.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_463f0.'
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_463f0.dir/objects.a
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_463f0.dir/objects.a @CMakeFiles\\cmTC_463f0.dir\\objects1.rsp
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe  -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_463f0.dir/objects.a -Wl,--no-whole-archive -o cmTC_463f0.exe -Wl,--out-implib,libcmTC_463f0.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-g4p077'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:377 (message)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:679 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    message: |
+      Parsed Fortran OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-g4p077']
+        ignore line: []
+        ignore line: [Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_463f0/fast]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_463f0.dir\\build.make CMakeFiles/cmTC_463f0.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-g4p077']
+        ignore line: [Building Fortran object CMakeFiles/cmTC_463f0.dir/OpenMPTryFlag.F90.obj]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g4p077\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_463f0.dir\\OpenMPTryFlag.F90.obj]
+        ignore line: [Linking Fortran executable cmTC_463f0.exe]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_463f0.dir\\link.txt --verbose=1]
+        ignore line: [Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl --whole-archive CMakeFiles\\cmTC_463f0.dir/objects.a -Wl --no-whole-archive -o cmTC_463f0.exe -Wl --out-implib libcmTC_463f0.dll.a -Wl --major-image-version 0 --minor-image-version 0 -l gfortran -shared-libgcc]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe]
+        ignore line: [COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 16.1.0 (Rev5  Built by MSYS2 project) ]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec]
+        ignore line: [rename spec lib to liborig]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_463f0.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_463f0-']
+        ignore line: [COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_463f0.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_463f0.']
+        link line: [ D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\cc4fNi73.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_463f0.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_463f0.dir/objects.a --no-whole-archive --out-implib libcmTC_463f0.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o]
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\cc4fNi73.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lquadmath] ==> ignore
+          arg [-plugin-opt=-pass-through=-lm] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_463f0.exe] ==> ignore
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..]
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles\\cmTC_463f0.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_463f0.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lgfortran] ==> lib [gfortran]
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lquadmath] ==> lib [quadmath]
+          arg [-lm] ==> lib [m]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        implicit libs: [gfortran;gomp;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32;quadmath;m;pthread;advapi32;shell32;user32;kernel32;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32]
+        implicit objs: []
+        implicit dirs: [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0;D:/Developers/apps/msys2/ucrt64/lib/gcc;D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib;D:/Developers/apps/msys2/ucrt64/lib]
+        implicit fwks: []
+      
+      
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:333 (try_compile)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:659 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    description: "Detecting Fortran OpenMP compiler info"
+    directories:
+      source: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-4u7n73"
+      binary: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-4u7n73"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_Fortran_FLAGS: ""
+      CMAKE_Fortran_FLAGS_DEBUG: "-g"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_FortranHeader_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-4u7n73'
+        
+        Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_fa1a9/fast
+        D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_fa1a9.dir\\build.make CMakeFiles/cmTC_fa1a9.dir/build
+        mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-4u7n73'
+        Building Fortran object CMakeFiles/cmTC_fa1a9.dir/OpenMPTryFlag.F90.obj
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4u7n73\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_fa1a9.dir\\OpenMPTryFlag.F90.obj
+        Linking Fortran executable cmTC_fa1a9.exe
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_fa1a9.dir\\link.txt --verbose=1
+        Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_fa1a9.dir/objects.a -Wl,--no-whole-archive -o cmTC_fa1a9.exe -Wl,--out-implib,libcmTC_fa1a9.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -l gfortran -shared-libgcc
+        Using built-in specs.
+        COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe
+        COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 16.1.0 (Rev5, Built by MSYS2 project) 
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec
+        rename spec lib to liborig
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_fa1a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_fa1a9-'
+        COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_fa1a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_fa1a9.'
+         D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccCpqWYj.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_fa1a9.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_fa1a9.dir/objects.a --no-whole-archive --out-implib libcmTC_fa1a9.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_fa1a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_fa1a9.'
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_fa1a9.dir/objects.a
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_fa1a9.dir/objects.a @CMakeFiles\\cmTC_fa1a9.dir\\objects1.rsp
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe  -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_fa1a9.dir/objects.a -Wl,--no-whole-archive -o cmTC_fa1a9.exe -Wl,--out-implib,libcmTC_fa1a9.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-4u7n73'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:377 (message)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:659 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    message: |
+      Parsed Fortran OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-4u7n73']
+        ignore line: []
+        ignore line: [Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_fa1a9/fast]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_fa1a9.dir\\build.make CMakeFiles/cmTC_fa1a9.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-4u7n73']
+        ignore line: [Building Fortran object CMakeFiles/cmTC_fa1a9.dir/OpenMPTryFlag.F90.obj]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4u7n73\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_fa1a9.dir\\OpenMPTryFlag.F90.obj]
+        ignore line: [Linking Fortran executable cmTC_fa1a9.exe]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_fa1a9.dir\\link.txt --verbose=1]
+        ignore line: [Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl --whole-archive CMakeFiles\\cmTC_fa1a9.dir/objects.a -Wl --no-whole-archive -o cmTC_fa1a9.exe -Wl --out-implib libcmTC_fa1a9.dll.a -Wl --major-image-version 0 --minor-image-version 0 -l gfortran -shared-libgcc]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe]
+        ignore line: [COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 16.1.0 (Rev5  Built by MSYS2 project) ]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec]
+        ignore line: [rename spec lib to liborig]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_fa1a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_fa1a9-']
+        ignore line: [COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_fa1a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_fa1a9.']
+        link line: [ D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccCpqWYj.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_fa1a9.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_fa1a9.dir/objects.a --no-whole-archive --out-implib libcmTC_fa1a9.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o]
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccCpqWYj.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lquadmath] ==> ignore
+          arg [-plugin-opt=-pass-through=-lm] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_fa1a9.exe] ==> ignore
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..]
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles\\cmTC_fa1a9.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_fa1a9.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lgfortran] ==> lib [gfortran]
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lquadmath] ==> lib [quadmath]
+          arg [-lm] ==> lib [m]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        implicit libs: [gfortran;gomp;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32;quadmath;m;pthread;advapi32;shell32;user32;kernel32;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32]
+        implicit objs: []
+        implicit dirs: [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0;D:/Developers/apps/msys2/ucrt64/lib/gcc;D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib;D:/Developers/apps/msys2/ucrt64/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:333 (try_compile)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:679 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    description: "Detecting Fortran OpenMP compiler info"
+    directories:
+      source: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-5elk7e"
+      binary: "D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-5elk7e"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_Fortran_FLAGS: ""
+      CMAKE_Fortran_FLAGS_DEBUG: "-g"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_FortranModule_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-5elk7e'
+        
+        Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_c8d22/fast
+        D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_c8d22.dir\\build.make CMakeFiles/cmTC_c8d22.dir/build
+        mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-5elk7e'
+        Building Fortran object CMakeFiles/cmTC_c8d22.dir/OpenMPTryFlag.F90.obj
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5elk7e\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_c8d22.dir\\OpenMPTryFlag.F90.obj
+        Linking Fortran executable cmTC_c8d22.exe
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_c8d22.dir\\link.txt --verbose=1
+        Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_c8d22.dir/objects.a -Wl,--no-whole-archive -o cmTC_c8d22.exe -Wl,--out-implib,libcmTC_c8d22.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -l gfortran -shared-libgcc
+        Using built-in specs.
+        COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe
+        COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 16.1.0 (Rev5, Built by MSYS2 project) 
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec
+        rename spec lib to liborig
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_c8d22.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_c8d22-'
+        COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/;D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../
+        Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_c8d22.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_c8d22.'
+         D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccEniaWT.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_c8d22.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_c8d22.dir/objects.a --no-whole-archive --out-implib libcmTC_c8d22.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_c8d22.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_c8d22.'
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_c8d22.dir/objects.a
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_c8d22.dir/objects.a @CMakeFiles\\cmTC_c8d22.dir\\objects1.rsp
+        D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe  -fopenmp -v -Wl,--whole-archive CMakeFiles\\cmTC_c8d22.dir/objects.a -Wl,--no-whole-archive -o cmTC_c8d22.exe -Wl,--out-implib,libcmTC_c8d22.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-5elk7e'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:377 (message)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/FindOpenMP.cmake:679 (_OPENMP_GET_FLAGS)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Developers/apps/msys2/ucrt64/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/Developers/apps/msys2/ucrt64/lib/cmake/OpenBLAS/OpenBLASConfig.cmake:81 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    message: |
+      Parsed Fortran OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-5elk7e']
+        ignore line: []
+        ignore line: [Run Build Command(s): D:/Developers/apps/msys2/ucrt64/bin/cmake.exe -E env VERBOSE=1 D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_c8d22/fast]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_c8d22.dir\\build.make CMakeFiles/cmTC_c8d22.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'D:/Developers/coding-lab/numpp/build/CMakeFiles/CMakeScratch/TryCompile-5elk7e']
+        ignore line: [Building Fortran object CMakeFiles/cmTC_c8d22.dir/OpenMPTryFlag.F90.obj]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe   -fopenmp -c D:\\Developers\\coding-lab\\numpp\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5elk7e\\OpenMPTryFlag.F90 -o CMakeFiles\\cmTC_c8d22.dir\\OpenMPTryFlag.F90.obj]
+        ignore line: [Linking Fortran executable cmTC_c8d22.exe]
+        ignore line: [D:\\Developers\\apps\\msys2\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_c8d22.dir\\link.txt --verbose=1]
+        ignore line: [Driving: D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe -fopenmp -v -Wl --whole-archive CMakeFiles\\cmTC_c8d22.dir/objects.a -Wl --no-whole-archive -o cmTC_c8d22.exe -Wl --out-implib libcmTC_c8d22.dll.a -Wl --major-image-version 0 --minor-image-version 0 -l gfortran -shared-libgcc]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=D:\\Developers\\apps\\msys2\\ucrt64\\bin\\gfortran.exe]
+        ignore line: [COLLECT_LTO_WRAPPER=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../gcc-16.1.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,c++,ada,fortran,lto,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-tls --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev5, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-lto --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 16.1.0 (Rev5  Built by MSYS2 project) ]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgfortran.spec]
+        ignore line: [rename spec lib to liborig]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_c8d22.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_c8d22-']
+        ignore line: [COMPILER_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../]
+        ignore line: [Reading specs from D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_c8d22.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-mthreads' '-pthread' '-dumpdir' 'cmTC_c8d22.']
+        link line: [ D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe -plugin D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll -plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccEniaWT.res -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingwthrd -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_c8d22.exe D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/crt2.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtbegin.o -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0 -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../.. --whole-archive CMakeFiles\\cmTC_c8d22.dir/objects.a --no-whole-archive --out-implib libcmTC_c8d22.dll.a --major-image-version 0 --minor-image-version 0 -lgfortran -lgomp -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lquadmath -lm -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingwthrd -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib/default-manifest.o D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/crtend.o]
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\javac\\AppData\\Local\\Temp\\ccEniaWT.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lquadmath] ==> ignore
+          arg [-plugin-opt=-pass-through=-lm] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwthrd] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_c8d22.exe] ==> ignore
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib]
+          arg [-LD:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..]
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles\\cmTC_c8d22.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_c8d22.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lgfortran] ==> lib [gfortran]
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lquadmath] ==> lib [quadmath]
+          arg [-lm] ==> lib [m]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingwthrd] ==> lib [mingwthrd]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc] ==> [D:/Developers/apps/msys2/ucrt64/lib/gcc]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../lib] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/lib] ==> [D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib]
+        collapse library dir [D:/Developers/apps/msys2/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../..] ==> [D:/Developers/apps/msys2/ucrt64/lib]
+        implicit libs: [gfortran;gomp;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32;quadmath;m;pthread;advapi32;shell32;user32;kernel32;mingwthrd;mingw32;gcc_s;gcc;mingwex;kernel32]
+        implicit objs: []
+        implicit dirs: [D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0;D:/Developers/apps/msys2/ucrt64/lib/gcc;D:/Developers/apps/msys2/ucrt64/x86_64-w64-mingw32/lib;D:/Developers/apps/msys2/ucrt64/lib]
+        implicit fwks: []
+      
+      
+...
