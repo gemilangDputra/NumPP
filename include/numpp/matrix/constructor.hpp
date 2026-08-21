@@ -43,7 +43,7 @@ namespace numpp {
         out.compute_stride(order);
         out.size_ = row*col;
         out.alloc();
-        for (size_t i=0; i < out.size(); ++i) out.data()[i] = T{1};
+        for (size_t i=0; i < out.size(); ++i) out.data_[i] = T{1};
         return out;
     }
     
@@ -56,23 +56,7 @@ namespace numpp {
         out.compute_stride(order);
         out.size_ = row*col;
         out.alloc();
-        for (size_t i=0; i < out.size(); ++i) out.data()[i] = value;
-        return out;
-    }
-    
-    template<typename T>
-    matrix<T> matrix<T>::rand(size_t row, size_t col, const T& min, const T& max, layout order) {
-        matrix<T> out;
-        out.row_ = row;
-        out.col_ = col;
-
-        out.compute_stride(order);
-        out.size_ = row * col;
-        out.alloc();
-
-        std::mt19937 gen(std::random_device{}());
-        std::uniform_real_distribution<T> dist(min, max);
-        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = dist(gen);
+        for (size_t i=0; i < out.size(); ++i) out.data_[i] = value;
         return out;
     }
 
@@ -88,24 +72,14 @@ namespace numpp {
         out.alloc();
 
         std::uniform_real_distribution<T> dist(min, max);
-        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = dist(rng);
+        for (size_t i = 0; i < out.size_; ++i) out.data_[i] = dist(rng);
         return out;
     }
-
+    
     template<typename T>
-    matrix<T> matrix<T>::randint(size_t row, size_t col, int64_t min, int64_t max, layout order) {
-        matrix<T> out;
-        out.row_ = row;
-        out.col_ = col;
-
-        out.compute_stride(order);
-        out.size_ = row * col;
-        out.alloc();
-
-        std::mt19937 gen(std::random_device{}());
-        std::uniform_int_distribution<int64_t> dist(min, max);
-        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = static_cast<T>(dist(gen));
-        return out;
+    matrix<T> matrix<T>::rand(size_t row, size_t col, const T& min, const T& max, layout order) {
+        std::mt19937 rng(std::random_device{}());
+        return matrix<T>::rand(row, col, min, max, order, rng);
     }
 
     template<typename T>
@@ -119,9 +93,37 @@ namespace numpp {
         out.size_ = row * col;
         out.alloc();
 
-        std::uniform_int_distribution<std::int64_t> dist(min, max);
-        for (size_t i = 0; i < out.size_; ++i) out.data()[i] = static_cast<T>(dist(rng));
+        std::uniform_int_distribution<int64_t> dist(min, max);
+        for (size_t i = 0; i < out.size_; ++i) out.data_[i] = static_cast<T>(dist(rng));
         return out;
+    }
+    
+    template<typename T>
+    matrix<T> matrix<T>::randint(size_t row, size_t col, int64_t min, int64_t max, layout order) {
+        std::mt19937 rng(std::random_device{}());
+        return matrix<T>::randint(row, col, min, max, order, rng);
+    }
+
+    template<typename T>
+    template<RandomEngine RNG>
+    matrix<T> matrix<T>::randn(size_t row, size_t col, const T& mean, const T& stddev, layout order, RNG& rng) {
+        matrix<T> out;
+        out.row_ = row;
+        out.col_ = col;
+
+        out.compute_stride(order);
+        out.size_ = row * col;
+        out.alloc();
+
+        std::normal_distribution<T> dist(mean, stddev);
+        for (size_t i = 0; i < out.size_; ++i) out.data_[i] = dist(rng);
+        return out;
+    }
+
+    template<typename T>
+    matrix<T> matrix<T>::randn(size_t row, size_t col, const T& mean, const T& stddev, layout order) {
+        std::mt19937 rng(std::random_device{}());
+        return randn(row, col, mean, stddev, order, rng);
     }
 
     template<typename T>
@@ -130,6 +132,7 @@ namespace numpp {
         matrix<T> out;
         out.row_ = other.row();
         out.col_ = other.col();
+
         out.compute_stride(other.order());
         out.size_ = other.row() * other.col();
         out.alloc();
@@ -143,6 +146,7 @@ namespace numpp {
         matrix<T> out;
         out.row_ = other.row();
         out.col_ = other.col();
+
         out.compute_stride(other.order());
         out.size_ = other.row() * other.col();
         out.alloc(true);
@@ -156,11 +160,12 @@ namespace numpp {
         matrix<T> out;
         out.row_ = other.row();
         out.col_ = other.col();
+
         out.compute_stride(other.order());
         out.size_ = other.row() * other.col();
         out.alloc();
 
-        for (size_t i=0; i < other.size(); ++i) out->data_[i] = T{1};
+        for (size_t i=0; i < other.size(); ++i) out.data_[i] = T{1};
         return out;
     }
 
@@ -169,14 +174,83 @@ namespace numpp {
     matrix<T> matrix<T>::full_like(const EXPR& other, const T& value) {
         matrix<T> out;
         out.row_ = other.row();
-        out.row_ = other.row();
         out.col_ = other.col();
+
         out.compute_stride(other.order());
         out.size_ = other.row() * other.col();
         out.alloc();
 
-        for (size_t i=0; i < other.size(); ++i) out->data_[i] = value;
+        for (size_t i=0; i < other.size(); ++i) out.data_[i] = value;
         return out;
+    }
+    
+    template<typename T>
+    template<matrix_like EXPR, RandomEngine RNG>
+    matrix<T> matrix<T>::rand_like(const EXPR& other, const T& min, const T& max, RNG& rng) {
+        matrix<T> out;
+        out.row_ = other.row();
+        out.col_ = other.col();
+
+        out.compute_stride(other.order());
+        out.size_ = other.row() * other.col();
+        out.alloc();
+
+        std::uniform_real_distribution<T> dist(min,max);
+        for (size_t i=0; i < other.size(); ++i) out.data_[i] = dist(rng);
+        return out;
+    }
+    
+    template<typename T>
+    template<matrix_like EXPR>
+    matrix<T> matrix<T>::rand_like(const EXPR& other, const T& min, const T& max) {
+        std::mt19937 rng(std::random_device{}());
+        return matrix<T>::rand_like(other, min, max, rng);
+    }
+
+    template<typename T>
+    template<matrix_like EXPR, RandomEngine RNG>
+    matrix<T> matrix<T>::randint_like(const EXPR& other, int64_t min, int64_t max, RNG& rng) {
+        matrix<T> out;
+        out.row_ = other.row();
+        out.col_ = other.col();
+
+        out.compute_stride(other.order());
+        out.size_ = other.row() * other.col();
+        out.alloc();
+
+        std::uniform_int_distribution<int64_t> dist(min,max);
+        for (size_t i=0; i < other.size(); ++i) out.data_[i] = static_cast<T>(dist(rng));
+        return out;
+    }
+    
+    template<typename T>
+    template<matrix_like EXPR>
+    matrix<T> matrix<T>::randint_like(const EXPR& other, int64_t min, int64_t max) {
+        std::mt19937 rng(std::random_device{}());
+        return matrix<T>::randint_like(other, min, max, rng);
+    }
+
+    template<typename T>
+    template<matrix_like EXPR, RandomEngine RNG>
+    matrix<T> matrix<T>::randn_like(const EXPR& other, const T& mean, const T& stddev, RNG& rng) {
+        matrix<T> out;
+        out.row_ = other.row();
+        out.col_ = other.col();
+
+        out.compute_stride(other.order());
+        out.size_ = other.row() * other.col();
+        out.alloc();
+
+        std::normal_distribution<T> dist(mean,stddev);
+        for (size_t i=0; i < other.size(); ++i) out.data_[i] = dist(rng);
+        return out;
+    }
+    
+    template<typename T>
+    template<matrix_like EXPR>
+    matrix<T> matrix<T>::randn_like(const EXPR& other, const T& mean, const T& stddev) {
+        std::mt19937 rng(std::random_device{}());
+        return matrix<T>::randn_like(other, mean, stddev, rng);
     }
 
     template<typename T>

@@ -87,6 +87,9 @@ namespace numpp {
             { a -= b } -> std::same_as<T&>;
             { a *= b } -> std::same_as<T&>;
             { a /= b } -> std::same_as<T&>;
+            
+            { -a } -> std::same_as<T>;
+            { +a } -> std::same_as<T>;
         };
     
     template<class T>

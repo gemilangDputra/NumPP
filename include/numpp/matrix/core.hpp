@@ -57,13 +57,13 @@ namespace numpp {
                 order_ = order;
                 offset_ = offset;
             }
-
-            size_t index_translate(size_t row, size_t col) const {
-                return  offset_ + row * rowstride_ + col * colstride_;
-            }
         public:
             using value_type = std::remove_const_t<T>;
             using pointer_type = T*;
+            
+            size_t index_translate(size_t row, size_t col) const {
+                return  offset_ + row * rowstride_ + col * colstride_;
+            }
             
             const T* data() const { return data_; }
             T* data() { return data_; }
@@ -119,6 +119,78 @@ namespace numpp {
             matrix_base<Derived, T>& operator-=(const T& scalar) requires (can_sub_assign<T>);
             matrix_base<Derived, T>& operator*=(const T& scalar) requires (can_mul_assign<T>);
             matrix_base<Derived, T>& operator/=(const T& scalar) requires (can_div_assign<T>);
+
+            matrix<T> operator-() const requires requires(T a) { -a; };
+            matrix<T> operator+() const requires requires(T a) { +a; };
+
+            bool all() requires(std::same_as<T, bool>) {
+                if (is_contiguous(derived())) {
+                    for (size_t i = 0; i < size_; ++i) {
+                        if (!data_[i]) return false;
+                    }
+                    return true;
+                } else {
+                    for (size_t i = 0; i < row_; ++i) {
+                        for (size_t j = 0; j < col_; ++j) {
+                            if (!(*this)(i,j)) return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+
+            bool any() requires(std::same_as<T, bool>) {
+                if (is_contiguous(derived())) {
+                    for (size_t i = 0; i < size_; ++i) {
+                        if (data_[i]) return true;
+                    }
+                    return false;
+                } else {
+                    for (size_t i = 0; i < row_; ++i) {
+                        for (size_t j = 0; j < col_; ++j) {
+                            if ((*this)(i,j)) return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+
+            matrix<T> sqrt() const;
+            matrix<T> cbrt() const;
+
+            matrix<T> cos() const;
+            matrix<T> sin() const;
+            matrix<T> tan() const;
+            
+            matrix<T> acos() const;
+            matrix<T> asin() const;
+            matrix<T> atan() const;
+
+            matrix<T> cosh() const;
+            matrix<T> sinh() const;
+            matrix<T> tanh() const;
+
+            matrix<T> log() const;
+            matrix<T> log2() const;
+            matrix<T> log10() const;
+
+            matrix<T> exp() const;
+
+            matrix<T> ceil() const;
+            matrix<T> floor() const;
+            matrix<T> round() const;
+            matrix<T> trunc() const;
+            matrix<T> abs() const;
+            matrix<T> neg() const;
+
+            T max() const;
+            T min() const;
+            size_t argmax() const;
+            size_t argmin() const;
+
+            T sum() const requires(can_add_assign<T>);
+            T prod() const requires(can_mul_assign<T>);
+            T mean() const requires(can_add_assign<T> && can_div<T>);
         private: 
             Derived& derived() {
                 return static_cast<Derived&>(*this);

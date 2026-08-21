@@ -106,18 +106,7 @@ namespace numpp {
     template<numpp_matrix EXPR>
     requires(std::same_as<typename EXPR::value_type, bool>)
     matrix<bool> operator!(const EXPR& mat) {
-        matrix<bool> out = matrix<bool>::empty_like(mat);
-        if (is_contiguous(mat)) {
-            const auto adata = mat.data();
-            auto cdata = out.data();
-            for (size_t i = 0; i < mat.size(); ++i) cdata[i] = !adata[i];
-        } else {
-            for (size_t i = 0; i < out.row(); ++i) {
-                for (size_t j = 0; j < out.col(); ++j)
-                    out(i, j) = !mat(i,j);
-            }
-        }
-        return out;
+        return detail::matrix_one_op_expr(mat,[](auto& x) { return !x; });
     }
 }
 

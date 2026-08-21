@@ -193,25 +193,6 @@ CMakeFiles/main.dir/main.cpp.obj: D:\Developers\coding-lab\numpp\main.cpp \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ranges_algo.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ranges_algobase.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/pstl/glue_algorithm_defs.h \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/arithmetic.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/linalg/matmul.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/backend/blas.hpp \
- D:/Developers/apps/msys2/ucrt64/include/openblas/cblas.h \
- D:/Developers/apps/msys2/ucrt64/include/openblas/openblas_config.h \
- D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/float.h \
- D:/Developers/apps/msys2/ucrt64/include/float.h \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/broadcast.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/view.hpp \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/utility \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/stl_relops.h \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/intcmp.h \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/comparison.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_comparison.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/transpose.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/slice.hpp \
- D:/Developers/coding-lab/numpp/include/numpp/matrix/view/reshape.hpp \
  D:/Developers/coding-lab/numpp/include/numpp/matrix/io.hpp \
  D:/Developers/coding-lab/numpp/include/numpp/backend/io.hpp \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/iomanip \
@@ -261,4 +242,25 @@ CMakeFiles/main.dir/main.cpp.obj: D:\Developers\coding-lab\numpp\main.cpp \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/atomic_wait.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/backward/auto_ptr.h \
  D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ranges_uninitialized.h \
- D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/view.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/transpose.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/slice.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/reshape.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/broadcast.hpp \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/utility \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/stl_relops.h \
+ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/intcmp.h \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/arithmetic.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/linalg/matmul.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/backend/blas.hpp \
+ D:/Developers/apps/msys2/ucrt64/include/openblas/cblas.h \
+ D:/Developers/apps/msys2/ucrt64/include/openblas/openblas_config.h \
+ D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/float.h \
+ D:/Developers/apps/msys2/ucrt64/include/float.h \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/comparison.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_comparison.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/matrix/math.hpp \
+ D:/Developers/coding-lab/numpp/include/numpp/math.hpp

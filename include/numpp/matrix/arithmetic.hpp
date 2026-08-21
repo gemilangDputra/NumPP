@@ -149,6 +149,16 @@ namespace numpp {
     matrix_base<Derived, T>& matrix_base<Derived, T>::operator/=(const B& b) {
         return detail::matrix_op_assign_expr(derived(), b, [](auto& x, const auto& y) { x /= y; }, "div-assign");
     }
+    
+    template<class Derived, typename T>
+    matrix<T> matrix_base<Derived, T>::operator-() const requires requires(T a) { -a; } {
+        return detail::matrix_one_op_expr(derived(),[](auto x){ return -x; });
+    }
+    
+    template<class Derived, typename T>
+    matrix<T> matrix_base<Derived, T>::operator+() const requires requires(T a) { +a; } {
+        return detail::matrix_one_op_expr(derived(),[](auto x){ return +x; });
+    }
 }
 
 #endif //NUMPP_MATRIX_ARITHMETIC_HPP

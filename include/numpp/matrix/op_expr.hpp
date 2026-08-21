@@ -237,6 +237,52 @@ namespace numpp {
             }
             return mat;
         }
+
+        template<matrix_like EXPR, typename Op>
+        matrix<typename EXPR::value_type> matrix_one_op_expr(const EXPR& mat, Op op) {
+            using T = typename EXPR::value_type;
+            matrix<T> out = matrix<T>::empty_like(mat);
+            if (is_contiguous(mat)) {
+                const auto adata = mat.data() + mat.offset();
+                auto cdata = out.data();
+                for (size_t i = 0; i < out.size(); ++i) {
+                    cdata[i] = op(adata[i]);
+                }
+            } else {
+                for (size_t i = 0; i < out.row(); ++i) {
+                    for (size_t j = 0; j < out.col(); ++j)
+                        out(i, j) = op(mat(i,j));
+                }
+            }
+            return out;
+        }
+        
+        template<matrix_like EXPR, typename Op>
+        auto matrix_acc_op_expr(const EXPR& mat, Op op, std::string_view operation_name) {
+            using T = typename EXPR::value_type;
+            if (mat.size() == 0) {
+                throw std::invalid_argument(
+                    "numpp::operation<" +
+                    std::string(operation_name) +
+                    "> error: cannot reduce an empty matrix"
+                );
+            }
+            T out = mat(0, 0);
+            if (is_contiguous(mat)) {
+                const auto data = mat.data() + mat.offset();
+                for (size_t i = 1; i < mat.size(); ++i) {
+                    op(out, data[i]);
+                }
+            } else {
+                for (size_t i = 0; i < mat.row(); ++i) {
+                    for (size_t j = 0; j < mat.col(); ++j) {
+                        if (i == 0 && j == 0) continue;
+                        op(out, mat(i, j));
+                    }
+                }
+            }
+            return out;
+        }
     }
 }
 

@@ -247,6 +247,7 @@ CMakeFiles/main.dir/main.cpp.obj: D:/Developers/coding-lab/numpp/main.cpp \
   D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/xmmintrin.h \
   D:/Developers/coding-lab/numpp/include/numpp/backend/blas.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/backend/io.hpp \
+  D:/Developers/coding-lab/numpp/include/numpp/math.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/arithmetic.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/comparison.hpp \
@@ -255,6 +256,7 @@ CMakeFiles/main.dir/main.cpp.obj: D:/Developers/coding-lab/numpp/main.cpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/forward.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/io.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/linalg/matmul.hpp \
+  D:/Developers/coding-lab/numpp/include/numpp/matrix/math.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/matrix.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp \
   D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp \
@@ -276,6 +278,10 @@ D:/Developers/coding-lab/numpp/include/numpp/matrix/view/reshape.hpp:
 D:/Developers/coding-lab/numpp/include/numpp/matrix/view/broadcast.hpp:
 
 D:/Developers/coding-lab/numpp/include/numpp/matrix/tool.hpp:
+
+D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp:
+
+D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp:
 
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/cwctype:
 
@@ -338,8 +344,6 @@ D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/ranges_cmp.h:
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_inline.h:
 
 D:/Developers/apps/msys2/ucrt64/include/sched.h:
-
-D:/Developers/coding-lab/numpp/include/numpp/matrix/scalar_arithmetic.hpp:
 
 D:/Developers/apps/msys2/ucrt64/include/signal.h:
 
@@ -422,6 +426,8 @@ D:/Developers/apps/msys2/ucrt64/include/sec_api/stdlib_s.h:
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc:
 
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/locale_classes.tcc:
+
+D:/Developers/coding-lab/numpp/include/numpp/matrix/math.hpp:
 
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/basic_ios.h:
 
@@ -781,6 +787,8 @@ D:/Developers/apps/msys2/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint
 
 D:/Developers/coding-lab/numpp/include/numpp/backend/io.hpp:
 
+D:/Developers/coding-lab/numpp/include/numpp/math.hpp:
+
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/tuple:
 
 D:/Developers/coding-lab/numpp/include/numpp/matrix.hpp:
@@ -792,5 +800,3 @@ D:/Developers/coding-lab/numpp/include/numpp/matrix/constructor.hpp:
 D:/Developers/apps/msys2/ucrt64/include/c++/16.1.0/bits/concept_check.h:
 
 D:/Developers/coding-lab/numpp/include/numpp/matrix/matrix.hpp:
-
-D:/Developers/coding-lab/numpp/include/numpp/matrix/op_expr.hpp:

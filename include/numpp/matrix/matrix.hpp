@@ -45,12 +45,17 @@ namespace numpp {
             static matrix ones(size_t row, size_t col, layout order=layout::rowmajor);
             static matrix full(size_t row, size_t col, const T& value, layout order=layout::rowmajor);
 
-            static matrix rand(size_t row, size_t col, const T& min, const T& max, layout order=layout::rowmajor);
             template<RandomEngine RNG>
             static matrix rand(size_t row, size_t col, const T& min, const T& max, layout order, RNG& rng);
-            static matrix randint(size_t row, size_t col, int64_t min, int64_t max, layout order=layout::rowmajor);
+            static matrix rand(size_t row, size_t col, const T& min, const T& max, layout order=layout::rowmajor);
+
             template<RandomEngine RNG>
             static matrix randint(size_t row, size_t col, int64_t min, int64_t max, layout order, RNG& rng);
+            static matrix randint(size_t row, size_t col, int64_t min, int64_t max, layout order=layout::rowmajor);
+
+            template<RandomEngine RNG>
+            static matrix randn(size_t row, size_t col, const T& mean, const T& stddev, layout order, RNG& rng);
+            static matrix randn(size_t row, size_t col, const T& mean=T{0}, const T& stddev=T{1}, layout order=layout::rowmajor);
 
             template<matrix_like EXPR>
             static matrix<T> empty_like(const EXPR& other);
@@ -60,6 +65,20 @@ namespace numpp {
             static matrix<T> ones_like(const EXPR& other);
             template<matrix_like EXPR>
             static matrix<T> full_like(const EXPR& other, const T& value);
+
+            template<matrix_like EXPR, RandomEngine RNG>
+            static matrix rand_like(const EXPR& other, const T& min, const T& max, RNG& rng);
+            template<matrix_like EXPR, RandomEngine RNG>
+            static matrix randint_like(const EXPR& other, int64_t min, int64_t max, RNG& rng);
+            template<matrix_like EXPR, RandomEngine RNG>
+            static matrix randn_like(const EXPR& other, const T& mean, const T& stddev, RNG& rng);
+
+            template<matrix_like EXPR>
+            static matrix rand_like(const EXPR& other, const T& min, const T& max);
+            template<matrix_like EXPR>
+            static matrix randint_like(const EXPR& other, int64_t min, int64_t max);
+            template<matrix_like EXPR>
+            static matrix randn_like(const EXPR& other, const T& mean=T{0}, const T& stddev=T{1});
 
             static matrix eye(size_t row, size_t col, int k=0, layout order=layout::rowmajor);
             static matrix identity(size_t row, size_t col, int k=0, layout order=layout::rowmajor);
