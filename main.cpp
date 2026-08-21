@@ -174,7 +174,7 @@ int main() {
         { {{1}, {1}}, {{0}} }
     };
 
-    nn.train(dataset, 10000, 4, 3.0);
+    nn.train(dataset, 10000, 4, 1.0);
 
     for (const auto& sample : dataset) {
         const auto& input = sample.input;
