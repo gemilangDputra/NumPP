@@ -1,8 +1,0 @@
-[
-{
-  "directory": "D:/Developers/coding-lab/numpp/build",
-  "command": "D:\\Developers\\apps\\msys2\\ucrt64\\bin\\g++.exe -DNUMPP_BLAS_HEADER=\"'<openblas/cblas.h'\" -DNUMPP_LAPACK_HEADER=\"'<openblas/lapacke.h'\" -DNUMPP_USE_BLAS=1 -DNUMPP_USE_LAPACK=1 @CMakeFiles/main.dir/includes_CXX.rsp -g -o CMakeFiles\\main.dir\\main.cpp.obj -c D:\\Developers\\coding-lab\\numpp\\main.cpp",
-  "file": "D:/Developers/coding-lab/numpp/main.cpp",
-  "output": "CMakeFiles/main.dir/main.cpp.obj"
-}
-]
