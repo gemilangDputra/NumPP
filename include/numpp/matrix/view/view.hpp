@@ -3,6 +3,7 @@
 
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
+#include <numpp/matrix/tool.hpp>
 #include <numpp/vector/tool.hpp>
 #include <string>
 
@@ -105,16 +106,32 @@ namespace numpp {
                         ", but vec contains " +
                         std::to_string(vec.size()) + " elements"
                     );
-                this->init_metadata(
-                    vec.data(),
-                    vec.size(),
-                    row,
-                    col,
-                    order == layout::rowmajor ? col : 1,
-                    order == layout::rowmajor ? 1 : row,
-                    order,
-                    0
-                );
+                
+                if constexpr (vector_like<VEC>) {
+                    size_t stride = vec.stride();
+                    this->init_metadata(
+                        vec.data(),
+                        vec.size(),
+                        row,
+                        col,
+                        order == layout::rowmajor ? col * stride : stride,
+                        order == layout::rowmajor ? stride : row * stride,
+                        order,
+                        vec.offset()
+                    );
+                }
+                else {
+                    this->init_metadata(
+                        vec.data(),
+                        vec.size(),
+                        row,
+                        col,
+                        order == layout::rowmajor ? col : 1,
+                        order == layout::rowmajor ? 1 : row,
+                        order,
+                        0
+                    );
+                }
             }
 
             matrix<T> to_matrix() const {

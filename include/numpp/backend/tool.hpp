@@ -4,7 +4,7 @@
 #include <concepts>
 #include <random>
 
-namespace {
+namespace numpp {
     template<typename RNG>
     concept RandomEngine = std::uniform_random_bit_generator<RNG>;
     
@@ -75,6 +75,20 @@ namespace {
         requires(T a, T b) {
             { a /= b } -> std::same_as<T&>;
         };
+    
+    namespace detail {
+        struct all_t {};
+    }
+    
+    inline constexpr detail::all_t all{};
+
+    struct slice_range {
+        size_t start;
+        size_t stop;
+        size_t step=1;
+
+        slice_range(size_t start_, size_t stop_, size_t step_=1) : start(start_), stop(stop_), step(step_) {}
+    };
 }
 
 #endif //NUMPP_BACKEND_TOOL_HPP

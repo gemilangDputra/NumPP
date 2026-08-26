@@ -2,6 +2,7 @@
 #define NUMPP_VECTOR_CORE_HPP
 
 #include <numpp/vector/forward.hpp>
+#include <numpp/vector/tool.hpp>
 #include <cstdint>
 
 namespace numpp {
@@ -29,6 +30,16 @@ namespace numpp {
 
             const T& operator[](size_t i) const { return data_[index_translate(i)]; }
             T& operator[](size_t i) { return data_[index_translate(i)]; }
+            
+            vector_view<T> view();
+            vector_view<T> slice(slice_range slice);
+            vector_view<T> slice(size_t start, size_t stop, size_t step=1);
+            vector_view<T> slice(detail::all_t);
+            
+            const vector_view<const T> view() const;
+            const vector_view<const T> slice(slice_range slice) const;
+            const vector_view<const T> slice(size_t start, size_t stop, size_t step=1) const;
+            const vector_view<const T> slice(detail::all_t) const;
         private:
             Derived& derived() {
                 return static_cast<Derived&>(*this);
@@ -37,7 +48,7 @@ namespace numpp {
             const Derived& derived() const {
                 return static_cast<const Derived&>(*this);
             }
-    };
+        };
 }
 
 #endif //NUMPP_VECTOR_CORE_HPP

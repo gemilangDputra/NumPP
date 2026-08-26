@@ -3,6 +3,7 @@
 
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
+#include <numpp/matrix/tool.hpp>
 #include <numpp/vector/tool.hpp>
 #include <string>
 

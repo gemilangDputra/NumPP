@@ -3,18 +3,10 @@
 
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
-
+#include <numpp/matrix/tool.hpp>
 #include <string>
 
 namespace numpp {
-    struct slice_range {
-        size_t start;
-        size_t stop;
-        size_t step=1;
-
-        slice_range(size_t start_, size_t stop_, size_t step_=1) : start(start_), stop(stop_), step(step_) {}
-    };
-
     template<typename T>
     template<matrix_like EXPR>
     matrix_view<T>::matrix_view(EXPR& other, slice_range row, slice_range col) {

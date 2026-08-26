@@ -9,15 +9,10 @@ namespace numpp {
     template<class Derived, typename T>
     class matrix_base;
 
-    struct slice_range;
-
-    namespace detail { 
-        struct all_t {};
+    namespace detail {
         struct transflag_t{};
         inline constexpr transflag_t transflag{};
     }
-    
-    inline constexpr detail::all_t all{};
 
     enum class layout {
         rowmajor,

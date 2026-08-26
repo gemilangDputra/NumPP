@@ -1,5 +1,5 @@
-#ifndef NUMPP_VECTOR_VECTOR_HPP
-#define NUMPP_VECTOR_VECTOR_HPP
+#ifndef NUMPP_VECTOR_VECTORC_HPP
+#define NUMPP_VECTOR_VECTORC_HPP
 
 #include <numpp/vector/forward.hpp>
 #include <numpp/vector/tool.hpp>
@@ -95,4 +95,4 @@ namespace numpp {
     };
 }
 
-#endif //NUMPP_VECTOR_VECTOR_HPP
+#endif //NUMPP_VECTOR_VECTORC_HPP

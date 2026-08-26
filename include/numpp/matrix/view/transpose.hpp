@@ -3,6 +3,7 @@
 
 #include <numpp/matrix/forward.hpp>
 #include <numpp/matrix/core.hpp>
+#include <numpp/matrix/tool.hpp>
 
 namespace numpp {
     template<typename T>

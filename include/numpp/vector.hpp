@@ -6,6 +6,8 @@
 #include <numpp/vector/core.hpp>
 #include <numpp/vector/constructor.hpp>
 #include <numpp/vector/io.hpp>
+#include <numpp/vector/view/view.hpp>
+#include <numpp/vector/view/slice.hpp>
 
 namespace numpp {
     using vectorf   = vector<float>;
