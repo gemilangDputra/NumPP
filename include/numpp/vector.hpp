@@ -1,13 +1,19 @@
 #ifndef NUMPP_VECTOR_HPP
 #define NUMPP_VECTOR_HPP
 
-#include <numpp/vector/forward.hpp>
-#include <numpp/vector/tool.hpp>
 #include <numpp/vector/core.hpp>
+#include <numpp/vector/vector.hpp>
 #include <numpp/vector/constructor.hpp>
+#include <numpp/vector/forward.hpp>
 #include <numpp/vector/io.hpp>
+#include <numpp/vector/tool.hpp>
 #include <numpp/vector/view/view.hpp>
 #include <numpp/vector/view/slice.hpp>
+#include <numpp/vector/arithmetic.hpp>
+#include <numpp/vector/scalar_arithmetic.hpp>
+#include <numpp/vector/comparison.hpp>
+#include <numpp/vector/scalar_comparison.hpp>
+#include <numpp/vector/math.hpp>
 
 namespace numpp {
     using vectorf   = vector<float>;

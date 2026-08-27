@@ -3,21 +3,25 @@
 #include <assert.h>
 
 int main() {
-    const numpp::vectorf vec = numpp::vectorf::arange(50);
+    const numpp::vectorf a = numpp::vectorf::arange(50);
+    auto b = a.view();
 
-    auto a = vec.slice(25,50);
-    auto b = vec.slice(0,50,2);
-    auto c = vec.slice(0,25);
-    
-    std::cout << a << '\n';
-    std::cout << b << '\n';
-    std::cout << c << '\n';
+    auto c = b - a;
+    c += a;
+    c[0] = 10;
+    c += 100;
 
-    numpp::print_option debug;
-    debug.debug_mode = true;
+    auto mask = (a < c) && (b == a) && (c > b) && (c < 500);
+
+    if (mask.all())
+        std::cout << "1\n";
+
+    if (mask.any())
+        std::cout << "2\n";
     
-    std::cout << debug;
-    std::cout << a << '\n';
-    std::cout << b << '\n';
-    std::cout << c << '\n';
+    if (mask[5])
+        std::cout << "3\n";
+    
+    std::cout << c;
+    std::cout << a.mean();
 }

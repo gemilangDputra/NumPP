@@ -98,24 +98,24 @@ namespace numpp {
 
             template<matrix_like B>
             requires (std::same_as<value_type, typename B::value_type> && can_add_assign<T>)
-            matrix_base<Derived, T>& operator+=(const B& b);
+            Derived& operator+=(const B& b);
             
             template<matrix_like B>
             requires (std::same_as<value_type, typename B::value_type> && can_sub_assign<T>)
-            matrix_base<Derived, T>& operator-=(const B& b);
+            Derived& operator-=(const B& b);
             
             template<matrix_like B>
             requires (std::same_as<value_type, typename B::value_type> && can_mul_assign<T>)
-            matrix_base<Derived, T>& operator*=(const B& b);
+            Derived& operator*=(const B& b);
             
             template<matrix_like B>
             requires (std::same_as<value_type, typename B::value_type> && can_div_assign<T>)
-            matrix_base<Derived, T>& operator/=(const B& b);
+            Derived& operator/=(const B& b);
             
-            matrix_base<Derived, T>& operator+=(const T& scalar) requires (can_add_assign<T>);
-            matrix_base<Derived, T>& operator-=(const T& scalar) requires (can_sub_assign<T>);
-            matrix_base<Derived, T>& operator*=(const T& scalar) requires (can_mul_assign<T>);
-            matrix_base<Derived, T>& operator/=(const T& scalar) requires (can_div_assign<T>);
+            Derived& operator+=(const T& scalar) requires (can_add_assign<T>);
+            Derived& operator-=(const T& scalar) requires (can_sub_assign<T>);
+            Derived& operator*=(const T& scalar) requires (can_mul_assign<T>);
+            Derived& operator/=(const T& scalar) requires (can_div_assign<T>);
 
             matrix<T> operator-() const requires requires(T a) { -a; };
             matrix<T> operator+() const requires requires(T a) { +a; };

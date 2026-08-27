@@ -17,7 +17,7 @@ namespace numpp {
             typename B::value_type
         >
         matrix<typename A::value_type>
-        matrix_op_expr(const A& a, const B& b, Op op, std::string_view operation_name) {
+        matrix_binary_expr(const A& a, const B& b, Op op, std::string_view operation_name) {
             using T = typename A::value_type;
             if (a.row() == b.row() && a.col() == b.col()) {
                 matrix<T> out = matrix<T>::empty_like(a);
@@ -97,7 +97,7 @@ namespace numpp {
             typename A::value_type,
             typename B::value_type
         >
-        A& matrix_op_assign_expr(A& a, const B& b, Op op, std::string_view operation_name) {
+        A& matrix_binary_assign_expr(A& a, const B& b, Op op, std::string_view operation_name) {
             if (a.row() == b.row() && a.col() == b.col()) {
                 if (is_contiguous(a) && is_contiguous(b)) {
                     if (a.rowstride() == b.rowstride() && a.colstride() == b.colstride()) {
@@ -201,7 +201,8 @@ namespace numpp {
         }
         
         template<numpp_matrix EXPR, typename Op>
-        matrix<typename EXPR::value_type> matrix_op_scalar_expr(
+        matrix<typename EXPR::value_type>
+        matrix_scalar_expr(
             const EXPR& a, const typename EXPR::value_type& scalar, Op op) {
             using T = typename EXPR::value_type;
             matrix<T> out = matrix<T>::empty_like(a);
@@ -221,7 +222,7 @@ namespace numpp {
         }
 
         template<numpp_matrix EXPR, typename Op>
-        EXPR& matrix_op_assign_scalar_expr( EXPR& mat, const typename EXPR::value_type& scalar, Op op) {
+        EXPR& matrix_scalar_assign_expr( EXPR& mat, const typename EXPR::value_type& scalar, Op op) {
             if (is_contiguous(mat)) {
                 auto* adata = mat.data() + mat.offset();
                 for (size_t i = 0; i < mat.size(); ++i) {
@@ -239,7 +240,7 @@ namespace numpp {
         }
 
         template<matrix_like EXPR, typename Op>
-        matrix<typename EXPR::value_type> matrix_one_op_expr(const EXPR& mat, Op op) {
+        matrix<typename EXPR::value_type> matrix_unary_expr(const EXPR& mat, Op op) {
             using T = typename EXPR::value_type;
             matrix<T> out = matrix<T>::empty_like(mat);
             if (is_contiguous(mat)) {
@@ -258,7 +259,7 @@ namespace numpp {
         }
         
         template<matrix_like EXPR, typename Op>
-        auto matrix_acc_op_expr(const EXPR& mat, Op op, std::string_view operation_name) {
+        auto matrix_reduction_expr(const EXPR& mat, Op op, std::string_view operation_name) {
             using T = typename EXPR::value_type;
             if (mat.size() == 0) {
                 throw std::invalid_argument(

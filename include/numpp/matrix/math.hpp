@@ -10,121 +10,117 @@
 namespace numpp {
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::sqrt() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::sqrt(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::sqrt(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::cbrt() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::cbrt(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::cbrt(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::cos() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::cos(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::cos(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::sin() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::sin(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::sin(x); });
     }
 
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::tan() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::tan(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::tan(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::acos() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::acos(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::acos(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::asin() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::asin(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::asin(x); });
     }
 
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::atan() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::atan(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::atan(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::cosh() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::cosh(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::cosh(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::sinh() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::sinh(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::sinh(x); });
     }
 
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::tanh() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::tanh(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::tanh(x); });
     }
 
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::log() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::log(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::log(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::log2() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::log2(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::log2(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::log10() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::log10(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::log10(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::exp() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::exp(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::exp(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::ceil() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::ceil(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::ceil(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::floor() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::floor(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::floor(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::round() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::round(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::round(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::trunc() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::trunc(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::trunc(x); });
     }
     
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::abs() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::abs(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::abs(x); });
     }
 
     template<typename Derived, typename T>
     matrix<T> matrix_base<Derived,T>::neg() const {
-        return detail::matrix_one_op_expr(derived(),[](auto x){ return ::numpp::neg(x); });
+        return detail::matrix_unary_expr(derived(),[](auto x){ return ::numpp::neg(x); });
     }
 
     template<typename Derived, typename T>
     T matrix_base<Derived,T>::max() const {
-            throw std::invalid_argument("numpp::operation<max> error: cannot find maximum of an empty matrix");
-        if (size_ == 0)
-        return detail::matrix_acc_op_expr(derived(),[](auto& x, auto y){ x = ::numpp::max(x,y); });
+        return detail::matrix_reduction_expr(derived(),[](auto& x, auto y){ x = ::numpp::max(x,y); }, "max");
     }
     
     template<typename Derived, typename T>
     T matrix_base<Derived,T>::min() const {
-        if (size_ == 0)
-            throw std::invalid_argument("numpp::operation<min> error: cannot find minimum of an empty matrix");
-        return detail::matrix_acc_op_expr(derived(),[](auto& x, auto y){ x = ::numpp::min(x,y); });
+        return detail::matrix_reduction_expr(derived(),[](auto& x, auto y){ x = ::numpp::min(x,y); }, "min");
     }
     
     template<typename Derived, typename T>
@@ -183,12 +179,12 @@ namespace numpp {
     
     template<typename Derived, typename T>
     T matrix_base<Derived, T>::sum() const requires(can_add_assign<T>) {
-        return detail::matrix_acc_op_expr(derived(),[](auto& x, auto y){ x += y; });
+        return detail::matrix_reduction_expr(derived(),[](auto& x, auto y){ x += y; }, "sum");
     }
     
     template<typename Derived, typename T>
     T matrix_base<Derived, T>::prod() const requires(can_mul_assign<T>) {
-        return detail::matrix_acc_op_expr(derived(),[](auto& x, auto y){ x *= y; });
+        return detail::matrix_reduction_expr(derived(),[](auto& x, auto y){ x *= y; }, "prod");
     }
     
     template<typename Derived, typename T>
@@ -198,136 +194,132 @@ namespace numpp {
 
     template<matrix_like EXPR>
     auto sqrt(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::sqrt(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::sqrt(x); });
     }
     
     template<matrix_like EXPR>
     auto cbrt(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::cbrt(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::cbrt(x); });
     }
 
     template<matrix_like A, matrix_like B>
     auto hypot(const A& a, const B& b) {
-        return detail::matrix_op_expr(a,b,[](auto x, auto y){ return ::numpp::hypot(x,y); }, "hypot");
+        return detail::matrix_binary_expr(a,b,[](auto x, auto y){ return ::numpp::hypot(x,y); }, "hypot");
     }
     
     template<matrix_like A, matrix_like B>
     auto pow(const A& a, const B& b) {
-        return detail::matrix_op_expr(a,b,[](auto x, auto y){ return ::numpp::pow(x,y); }, "pow");
+        return detail::matrix_binary_expr(a,b,[](auto x, auto y){ return ::numpp::pow(x,y); }, "pow");
     }
 
     template<matrix_like EXPR>
     auto pow(const EXPR& a, const typename EXPR::value_type& scalar) {
-        return detail::matrix_op_scalar_expr(a,scalar,[](auto x, auto y){ return ::numpp::pow(x,y); });
+        return detail::matrix_scalar_expr(a,scalar,[](auto x, auto y){ return ::numpp::pow(x,y); });
     }
     
     template<matrix_like EXPR>
     auto cos(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::cos(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::cos(x); });
     }
     
     template<matrix_like EXPR>
     auto sin(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::sin(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::sin(x); });
     }
 
     template<matrix_like EXPR>
     auto tan(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::tan(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::tan(x); });
     }
     
     template<matrix_like EXPR>
     auto acos(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::acos(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::acos(x); });
     }
     
     template<matrix_like EXPR>
     auto asin(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::asin(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::asin(x); });
     }
 
     template<matrix_like EXPR>
     auto atan(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::atan(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::atan(x); });
     }
     
     template<matrix_like EXPR>
     auto cosh(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::cosh(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::cosh(x); });
     }
     
     template<matrix_like EXPR>
     auto sinh(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::sinh(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::sinh(x); });
     }
 
     template<matrix_like EXPR>
     auto tanh(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::tanh(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::tanh(x); });
     }
 
     template<matrix_like EXPR>
     auto log(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::log(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::log(x); });
     }
     
     template<matrix_like EXPR>
     auto log2(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::log2(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::log2(x); });
     }
     
     template<matrix_like EXPR>
     auto log10(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::log10(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::log10(x); });
     }
     
     template<matrix_like EXPR>
     auto exp(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::exp(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::exp(x); });
     }
     
     template<matrix_like EXPR>
     auto ceil(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::ceil(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::ceil(x); });
     }
     
     template<matrix_like EXPR>
     auto floor(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::floor(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::floor(x); });
     }
     
     template<matrix_like EXPR>
     auto round(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::round(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::round(x); });
     }
     
     template<matrix_like EXPR>
     auto trunc(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::trunc(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::trunc(x); });
     }
     
     template<matrix_like EXPR>
     auto abs(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::abs(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::abs(x); });
     }
     
     template<matrix_like EXPR>
     auto neg(const EXPR& mat) {
-        return detail::matrix_one_op_expr(mat,[](auto x){ return ::numpp::neg(x); });
+        return detail::matrix_unary_expr(mat,[](auto x){ return ::numpp::neg(x); });
     }
     
     template<matrix_like EXPR>
     auto max(const EXPR& mat) {
-        if (mat.size() == 0)
-            throw std::invalid_argument("numpp::operation<max> error: cannot find maximum of an empty matrix");
-        return detail::matrix_acc_op_expr(mat,[](auto& x, auto y){ x = ::numpp::max(x,y); }, "max");
+        return detail::matrix_reduction_expr(mat,[](auto& x, auto y){ x = ::numpp::max(x,y); }, "max");
     }
     
     template<matrix_like EXPR>
     auto min(const EXPR& mat) {
-        if (mat.size() == 0)
-            throw std::invalid_argument("numpp::operation<min> error: cannot find minimum of an empty matrix");
-        return detail::matrix_acc_op_expr(mat,[](auto& x, auto y){ x = ::numpp::min(x,y); }, "min");
+        return detail::matrix_reduction_expr(mat,[](auto& x, auto y){ x = ::numpp::min(x,y); }, "min");
     }
     
     template<matrix_like EXPR>
@@ -388,44 +380,44 @@ namespace numpp {
 
     template<matrix_like A, matrix_like B>
     auto maximum(const A& a, const B& b) {
-        return detail::matrix_op_expr(a,b,[](auto x, auto y){ return ::numpp::max(x,y); }, "maximum");
+        return detail::matrix_binary_expr(a,b,[](auto x, auto y){ return ::numpp::max(x,y); }, "maximum");
     }
     
     template<matrix_like A, matrix_like B>
     auto minimum(const A& a, const B& b) {
-        return detail::matrix_op_expr(a,b,[](auto x, auto y){ return ::numpp::min(x,y); }, "minimum");
+        return detail::matrix_binary_expr(a,b,[](auto x, auto y){ return ::numpp::min(x,y); }, "minimum");
     }
     
     template<matrix_like EXPR>
     auto maximum(const EXPR& mat, const typename EXPR::value_type& scalar) {
-        return detail::matrix_op_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::max(x,y); });
+        return detail::matrix_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::max(x,y); });
     }
     
     template<matrix_like EXPR>
     auto minimum(const EXPR& mat, const typename EXPR::value_type& scalar) {
-        return detail::matrix_op_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::min(x,y); });
+        return detail::matrix_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::min(x,y); });
     }
     
     template<matrix_like EXPR>
     auto maximum(const typename EXPR::value_type& scalar, const EXPR& mat) {
-        return detail::matrix_op_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::max(y,x); });
+        return detail::matrix_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::max(y,x); });
     }
     
     template<matrix_like EXPR>
     auto minimum(const typename EXPR::value_type& scalar, const EXPR& mat) {
-        return detail::matrix_op_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::min(y,x); });
+        return detail::matrix_scalar_expr(mat,scalar,[](auto x, auto y){ return ::numpp::min(y,x); });
     }
     
     template<matrix_like EXPR>
     requires(can_add_assign<typename EXPR::value_type>)
     auto sum(const EXPR& mat) {
-        return detail::matrix_acc_op_expr(mat,[](auto& x, auto y){ x += y; });
+        return detail::matrix_reduction_expr(mat,[](auto& x, auto y){ x += y; }, "sum");
     }
     
     template<matrix_like EXPR>
     requires(can_mul_assign<typename EXPR::value_type>)
     auto prod(const EXPR& mat) {
-        return detail::matrix_acc_op_expr(mat,[](auto& x, auto y){ x *= y; });
+        return detail::matrix_reduction_expr(mat,[](auto& x, auto y){ x *= y; }, "prod");
     }
     
     template<matrix_like EXPR>
