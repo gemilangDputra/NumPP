@@ -88,6 +88,47 @@ namespace numpp::detail {
             c, ldc
         );
     }
+
+    template<typename T>
+    T blas_dot(
+        const int n,
+        const T* a,
+        const int incA,
+        const T* b,
+        const int incB
+    );
+
+    template<>
+    inline float blas_dot<float>(
+        const int n,
+        const float* a,
+        const int incA,
+        const float* b,
+        const int incB
+    ) {
+        return
+        cblas_sdot(
+            n,
+            a, incA,
+            b, incB
+        );
+    }
+    
+    template<>
+    inline double blas_dot<double>(
+        const int n,
+        const double* a,
+        const int incA,
+        const double* b,
+        const int incB
+    ) {
+        return
+        cblas_ddot(
+            n,
+            a, incA,
+            b, incB
+        );
+    }
 }
 #endif
 

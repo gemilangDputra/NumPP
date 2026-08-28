@@ -101,7 +101,6 @@ namespace numpp {
             }
 
             #endif
-
             template<matrix_like A, matrix_like B>
             auto matmul_native_contiguous_same_strides(const A& a, const B& b) {
                 using T = typename A::value_type;
@@ -135,7 +134,7 @@ namespace numpp {
                 }
                 return out;
             }
-
+            
             template<matrix_like A, matrix_like B>
             auto matmul_native_general(const A& a, const B& b) {
                 using T = typename A::value_type;
@@ -175,13 +174,12 @@ namespace numpp {
                     std::to_string(b.row()) +
                     ")"
                 );
-
+            
             const size_t M = a.row();
             const size_t N = b.col();
             const size_t K = a.col();
-
+            
             const size_t work = M * N * K;
-
             if (is_contiguous(a) && is_contiguous(b)) {
                 #if NUMPP_USE_BLAS
                 if constexpr (std::same_as<T, float> || std::same_as<T, double>) {
@@ -209,6 +207,16 @@ namespace numpp {
             }
             return detail::matmul_native_general(a, b);
         }
+        
+        template<matrix_like A, matrix_like B>
+        requires (std::same_as<
+            typename A::value_type,
+            typename B::value_type> &&
+            is_numeric<typename A::value_type>
+        )
+        auto dot(const A& a, const B& b) {
+            return matmul(a,b);
+        }
     }
     
     template<matrix_like A, matrix_like B>
@@ -218,6 +226,16 @@ namespace numpp {
         is_numeric<typename A::value_type>
     )
     auto matmul(const A& a, const B& b) {
+        return linalg::matmul(a,b);
+    }
+    
+    template<matrix_like A, matrix_like B>
+    requires (std::same_as<
+        typename A::value_type,
+        typename B::value_type> &&
+        is_numeric<typename A::value_type>
+    )
+    auto dot(const A& a, const B& b) {
         return linalg::matmul(a,b);
     }
 }
