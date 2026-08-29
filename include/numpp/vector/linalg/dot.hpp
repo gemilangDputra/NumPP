@@ -12,25 +12,25 @@ namespace numpp {
         namespace detail {
             #if NUMPP_USE_BLAS
             template<general_vector_like A, general_vector_like B>
-            typename A::value_type dot_blas(const A& a, const B& b) {
+            auto dot_blas(const A& a, const B& b) {
                 using T = typename A::value_type;
                 int incA = 1;
                 int incB = 1;
                 const T* adata = a.data();
-                const T* bdata = a.data();
+                const T* bdata = b.data();
                 if constexpr (vector_like<A>) { incA = static_cast<int>(a.stride()); adata = adata + a.offset(); }
                 if constexpr (vector_like<B>) { incB = static_cast<int>(b.stride()); bdata = bdata + b.offset(); }
-                return ::numpp::detail::blas_dot(a.size(), adata, incA, bdata, incB);
+                return ::numpp::detail::blas_dot<T>(a.size(), adata, incA, bdata, incB);
             }
             #endif
             
             template<general_vector_like A, general_vector_like B>
-            typename A::value_type dot_native(const A& a, const B& b) {
+            auto dot_native(const A& a, const B& b) {
                 using T = typename A::value_type;
                 int incA = 1;
                 int incB = 1;
                 const T* adata = a.data();
-                const T* bdata = a.data();
+                const T* bdata = b.data();
                 if constexpr (vector_like<A>) { incA = static_cast<int>(a.stride()); adata = adata + a.offset(); }
                 if constexpr (vector_like<B>) { incB = static_cast<int>(b.stride()); bdata = bdata + b.offset(); }
                 T out = T{0};
@@ -53,15 +53,16 @@ namespace numpp {
         auto dot(const A& a, const B& b) {
             if (a.size() != b.size())
                 throw std::invalid_argument(
-                    "numpp::operation<dot error: "
+                    "numpp::operation<dot> error: "
                     "vector size mismatch:"
                     "lhs has size " + std::to_string(a.size()) +
                     ", rhs has size " + std::to_string(b.size()) +
                     "; vectors must have the same size"
                 );
-            
-            if (a.size() > 6144) return detail::dot_blas(a,b);
-            else return detail::dot_native(a,b); 
+            #if NUMPP_USE_BLAS
+            if (a.size() > ::numpp::threshold::dot_blas) return detail::dot_blas(a,b);
+            #endif
+            return detail::dot_native(a,b); 
         }
     }
     template<general_vector_like A, general_vector_like B>

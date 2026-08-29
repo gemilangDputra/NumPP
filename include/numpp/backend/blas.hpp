@@ -129,7 +129,74 @@ namespace numpp::detail {
             b, incB
         );
     }
+
+    template<typename T>
+    void blas_ger(
+        CBLAS_LAYOUT layout,
+        int M,
+        int N,
+        T alpha,
+        const T* a,
+        int incA,
+        const T* b,
+        int incB,
+        T* c,
+        int ldc
+    );
+
+    template<>
+    void blas_ger<float>(
+        CBLAS_LAYOUT layout,
+        int M,
+        int N,
+        float alpha,
+        const float* a,
+        int incA,
+        const float* b,
+        int incB,
+        float* c,
+        int ldc
+    ) {
+        cblas_sger(
+            layout,
+            M, N,
+            alpha,
+            a, incA,
+            b, incB,
+            c, ldc
+        );
+    }
+
+    template<>
+    void blas_ger<double>(
+        CBLAS_LAYOUT layout,
+        int M,
+        int N,
+        double alpha,
+        const double* a,
+        int incA,
+        const double* b,
+        int incB,
+        double* c,
+        int ldc
+    ) {
+        cblas_dger(
+            layout,
+            M, N,
+            alpha,
+            a, incA,
+            b, incB,
+            c, ldc
+        );
+    }
 }
 #endif
+
+namespace numpp::threshold {
+    inline size_t matmul_blas   = 125'000'000ULL;
+    inline size_t matmul_repack = 12'500'000ULL;
+    inline size_t dot_blas      = 15'500'000ULL;
+    inline size_t outer_blas    = 15'500'000ULL;
+}
 
 #endif //NUMPP_BACKEND_BLAS_HPP

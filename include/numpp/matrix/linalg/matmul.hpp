@@ -183,7 +183,7 @@ namespace numpp {
             if (is_contiguous(a) && is_contiguous(b)) {
                 #if NUMPP_USE_BLAS
                 if constexpr (std::same_as<T, float> || std::same_as<T, double>) {
-                    if (work > 125'000'000ULL/(8*sizeof(T))) {
+                    if (work > ::numpp::threshold::matmul_blas/(8*sizeof(T))) {
                         if (a.rowstride() == b.rowstride() || a.colstride() == b.colstride())
                             return detail::matmul_blas_same_strides(a,b);
                         else
@@ -196,7 +196,7 @@ namespace numpp {
                 }
             }
 
-            if (work > 12'500'000ULL) {
+            if (work > ::numpp::threshold::matmul_repack) {
                 if (!is_contiguous(a) && !is_contiguous(b)) {
                     return ::numpp::linalg::matmul(matrix<T>(a), matrix<T>(b));
                 } else if (!is_contiguous(a)) {
@@ -215,7 +215,7 @@ namespace numpp {
             is_numeric<typename A::value_type>
         )
         auto dot(const A& a, const B& b) {
-            return matmul(a,b);
+            return ::numpp::linalg::matmul(a, b);
         }
     }
     
