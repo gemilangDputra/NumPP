@@ -1,20 +1,23 @@
 #include <numpp/matrix.hpp>
 #include <numpp/vector.hpp>
+
+#include <numpp/matrix/linalg/dot.hpp>
 #include <numpp/vector/linalg/dot.hpp>
-#include <numpp/vector/linalg/outer.hpp>
 
 int main() {
-    const numpp::vectorf a = numpp::vectorf::arange(50);
-    const numpp::vectorf b = numpp::vectorf::arange(0,100,2);
+    auto vec50a = numpp::vectorf::linspace(0.1, 5.0f, 50);
+    auto vec50b = numpp::vectorf::linspace(1, 50.0f, 50);
 
-    const numpp::matrix_view a_m = numpp::reshape(a, 5,10);
-    const numpp::matrix_view b_m = numpp::reshape(b, 10,5);
+    auto mat50x5 = numpp::reshape(numpp::vectorf::linspace(0.1f, 25.0f, 250), 50,5).to_matrix();
+    auto mat5x50 = numpp::reshape(numpp::vectorf::linspace(0.1f, 25.0f, 250), 5,50).to_matrix();
 
-    auto c   = numpp::linalg::dot(a,b);
-    auto c_m = numpp::linalg::dot(a_m,b_m);
+    numpp::print_option print_option;
+    print_option.floatformat = numpp::print_option::format::fixed;
+    print_option.precision = 2;
 
-    std::cout << c   << '\n';
-    std::cout << c_m << '\n';
-
-    std::cout << numpp::linalg::outer(a,b) << '\n';
+    std::cout << print_option;
+    std::cout << numpp::linalg::dot(vec50a, vec50b) << '\n';
+    std::cout << numpp::linalg::dot(mat50x5, mat5x50) << '\n'; //nama lain matrix multiplication/matmul
+    std::cout << numpp::linalg::dot(vec50a, mat50x5) << '\n';
+    std::cout << numpp::linalg::dot(mat5x50, vec50b) << '\n';
 }

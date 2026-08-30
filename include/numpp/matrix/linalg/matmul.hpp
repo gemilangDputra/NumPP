@@ -207,16 +207,6 @@ namespace numpp {
             }
             return detail::matmul_native_general(a, b);
         }
-        
-        template<matrix_like A, matrix_like B>
-        requires (std::same_as<
-            typename A::value_type,
-            typename B::value_type> &&
-            is_numeric<typename A::value_type>
-        )
-        auto dot(const A& a, const B& b) {
-            return ::numpp::linalg::matmul(a, b);
-        }
     }
     
     template<matrix_like A, matrix_like B>
@@ -226,16 +216,6 @@ namespace numpp {
         is_numeric<typename A::value_type>
     )
     auto matmul(const A& a, const B& b) {
-        return linalg::matmul(a,b);
-    }
-    
-    template<matrix_like A, matrix_like B>
-    requires (std::same_as<
-        typename A::value_type,
-        typename B::value_type> &&
-        is_numeric<typename A::value_type>
-    )
-    auto dot(const A& a, const B& b) {
         return linalg::matmul(a,b);
     }
 }

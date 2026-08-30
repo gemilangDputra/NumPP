@@ -189,6 +189,74 @@ namespace numpp::detail {
             c, ldc
         );
     }
+
+    template<typename T>
+    void blas_gemv(
+        CBLAS_LAYOUT layout,
+        CBLAS_TRANSPOSE TransA,
+        int m,
+        int n,
+        T alpha,
+        const T* a,
+        int lda,
+        const T* b,
+        int incB,
+        T beta,
+        T* c,
+        int incC
+    );
+    
+    template<>
+    void blas_gemv<float>(
+        CBLAS_LAYOUT layout,
+        CBLAS_TRANSPOSE TransA,
+        int m,
+        int n,
+        float alpha,
+        const float* a,
+        int lda,
+        const float* b,
+        int incB,
+        float beta,
+        float* c,
+        int incC
+    ) {
+        cblas_sgemv(
+            layout, TransA,
+            m, n,
+            alpha,
+            a, lda,
+            b, incB,
+            beta,
+            c, incC
+        );
+    }
+    
+    template<>
+    void blas_gemv<double>(
+        CBLAS_LAYOUT layout,
+        CBLAS_TRANSPOSE TransA,
+        int m,
+        int n,
+        double alpha,
+        const double* a,
+        int lda,
+        const double* b,
+        int incB,
+        double beta,
+        double* c,
+        int incC
+    ) {
+        cblas_dgemv(
+            layout, TransA,
+            m, n,
+            alpha,
+            a, lda,
+            b, incB,
+            beta,
+            c, incC
+        );
+    }
 }
 #endif
 

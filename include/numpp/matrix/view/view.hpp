@@ -134,8 +134,9 @@ namespace numpp {
                 }
             }
 
-            matrix<T> to_matrix() const {
-                matrix<T> out = matrix<T>::empty(this->row_, this->col_, this->order_);
+            auto to_matrix() const {
+                using value_type = typename matrix_view<T>::value_type;
+                matrix<value_type> out = matrix<value_type>::empty(this->row_, this->col_, this->order_);
                 for (size_t i = 0; i < this->row_; ++i) {
                     for (size_t j = 0; j < this->col_; ++j) {
                         out(i, j) = (*this)(i, j);

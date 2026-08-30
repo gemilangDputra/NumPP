@@ -280,9 +280,12 @@ namespace numpp {
             return out;
         }
 
-        const T step = endpoint ? (stop - start) / T{num - 1} : (stop - start) / T{num};
+        const T step = endpoint
+            ? (stop - start) / static_cast<T>(num - 1)
+            : (stop - start) / static_cast<T>(num);
+
         for (size_t i = 0; i < num; ++i)
-            out.data_[i] = start + T{i} * step;
+            out.data_[i] = start + static_cast<T>(i) * step;
         
         if (endpoint)
             out.data_[num - 1] = stop;
